@@ -32,8 +32,15 @@ int get_credits() {
 };
 template <class T>
 class BSTNode{
-private:
 public:
+BSTNode<T> *right=NULL;
+BSTNode<T> *left=NULL;
+T Content;
+BSTNode(BSTNode<T>* right=NULL,BSTNode<T>* left=NULL,T Content){
+    this->right=right;
+    this->left=left;
+    this->Content=Content;
+}
 
 };
 int main(){
