@@ -12,8 +12,8 @@ class BSTNode {
 public:
     BSTNode<T>* right = NULL;
     BSTNode<T>* left = NULL;
-    T Content;
-    BSTNode(T Content) {
+    Course Content;
+    BSTNode(Course Content) {
         this->Content = Content;
     }
 
@@ -39,22 +39,37 @@ public:
         }
         return root;
     }
-    void dropCourse(Course X) {
+    void dropCourse(string x) {
         remove(x);
     }
-    remove(Course x){
-        if (search(x) != NULL) {
 
-
-
-        }else {
-            cout << "Courses doesn't exist";
-            return;
+    void remove(string x){
+        if (root == NULL){
+            return false;
         }
-
+        if (root->Content.CourseID == x){
+            //delete
+        }
+        if (root->Content.CourseID > x){
+            return search(root->left,x);
+        }
+        if (root->Content.CourseID < x){
+            return search(root->right,x);
+        } 
     }
-    search(Course x){
-
+    bool search(BSTNode<T> *root ,string x){
+        if (root == NULL){
+            return false;
+        }
+        if (root->Content.CourseID == x){
+            return true
+        }
+        if (root->Content.CourseID > x){
+            return search(root->left,x);
+        }
+        if (root->Content.CourseID < x){
+            return search(root->right,x);
+        }
     }
 };
 
