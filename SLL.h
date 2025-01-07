@@ -60,7 +60,7 @@ class SLL{
             }
         }
     }
-    void deleteStudent(string id){
+    void deleteStudent(int id){
     if (head == NULL){
         cout << "no students exist" << endl;
         return;
