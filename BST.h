@@ -39,7 +39,21 @@ public:
         }
         return root;
     }
-    void dropCourse() {
+    void dropCourse(Course X) {
+        remove(x);
+    }
+    remove(Course x){
+        if (search(x) != NULL) {
+
+
+
+        }else {
+            cout << "Courses doesn't exist";
+            return;
+        }
+
+    }
+    search(Course x){
 
     }
 };
