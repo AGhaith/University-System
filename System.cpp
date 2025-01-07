@@ -1,5 +1,5 @@
 #include<iostream>
-#include"SystemHeader.h"
+#include"Course.h"
 using namespace std;
 int main(){
 
