@@ -2,6 +2,7 @@
 #define SLL_H
 
 #include <iostream>
+#include"Student.h"
 using namespace std ;
 
 template <class T >
@@ -58,6 +59,22 @@ class SLL{
                 cout << curr->data.get_name() << "||" ;
             }
         }
+    }
+    void deleteStudent(string id){
+    if (head == NULL){
+        cout << "no students exist" << endl;
+        return;
+    }
+    Node<Student> *curr = head;
+    while(curr->next != NULL){
+    if (curr->next->Data.get_ID == id){
+        break;
+    }   
+    curr = curr->next; 
+    } 
+    Node<Student> *temp = curr->next;
+    curr->next = temp->next;
+    delete curr;
     }
 };
 
