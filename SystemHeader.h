@@ -42,20 +42,29 @@ public:
     BSTNode<T>* right = NULL;
     BSTNode<T>* left = NULL;
     T Content;
-
-    BSTNode(BSTNode<T>* right = NULL, BSTNode<T>* left = NULL, T Content = T()) {
+    BSTNode(T Content) {
+        this->Content = Content;
+    }
+    BSTNode(BSTNode<T>* right = NULL, BSTNode<T>* left = NULL, T Content) {
         this->right = right;
         this->left = left;
         this->Content = Content;
     }
 };
-
+template <class T>
 class CourseRecordManagment {
 public:
-    void addCourse() {
+    BSTNode<T> *root = NULL;
+    void addCourse(Course x) {
+        if (root == NULL){
+            root = new BSTNode(x);
+        }else{
+            
+        }
     }
 
     void dropCourse() {
+
     }
 };
 
