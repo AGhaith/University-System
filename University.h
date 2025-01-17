@@ -4,19 +4,30 @@
 #include <iostream>
 #include <string>
 #include "Course.h"
-#include "BST.h"
 #include "Course Registration.h"
-#include "SLL.h"
+#include "Course Records Management.h"
+
 #include "Student Records Management.h"
-#include "Student.h"
+
 using namespace std;
 
 class university{
 
 private:
+Student_Records_Management StudentRecords;
 
 public:
+    void displayStudentRecords(){
+        StudentRecords.display();
+    }
+    void AddToStudentRecord(Student a){
+        StudentRecords.Add_student(a);
+    }
+    void DeleteStudentRecord(int id){
+        StudentRecords.Delete_Student(id);
 
+    }
 };
+
 
 #endif // UNIVERSITY_H

@@ -9,15 +9,16 @@ using namespace std ;
 
 class Student_Records_Management{
     private:
-    SLL<Student> SLL_Students ; 
+    SLL SLL_Students ; 
     public:
-    void Add_student(string name , string Email , string Phone ,string Address , string Password){
-
-        Student s1(name , Email , Phone , Address , Password) ; 
-        SLL_Students.insert(s1) ; 
+    void Add_student(Student A){
+        SLL_Students.insert(A) ; 
     }
     void Delete_Student(int ID){
         SLL_Students.deleteStudent(ID) ; 
+    }
+    void display(){
+        SLL_Students.display();
     }
 };
 

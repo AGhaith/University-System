@@ -5,30 +5,29 @@
 #include"Student.h"
 using namespace std ;
 
-template <class T >
+
 class Node{
 
     public:
 
-    T Data;
+    Student Data;
     Node* next = NULL;
 
-    Node(T Data){
+    Node(Student Data){
         this->Data = Data ; 
     }
 
 };
 
-template <class T>
 class SLL{
 
     public:
 
-    Node<T>* head = NULL ;
+    Node* head = NULL ;
     
-    void insert(T Data){
+    void insert(Student Data){
 
-        Node<T>* newnode = new Node<T>(Data) ; 
+        Node* newnode = new Node(Data) ; 
 
         if (head==NULL){
 
@@ -36,7 +35,7 @@ class SLL{
         }
         else{
 
-            Node<T>* temp = head ; 
+            Node* temp = head ; 
             while (temp->next != NULL){
                 temp = temp->next ;
             }
@@ -45,7 +44,7 @@ class SLL{
 
     }
     void display(){
-        Node<T> *curr = head ;
+        Node *curr = head ;
 
         if (head == NULL){
 
@@ -55,26 +54,33 @@ class SLL{
         else{
 
             while (curr != NULL){
-
-                cout << curr->data.get_name() << "||" ;
+                cout << "-------------------------------------------------------------" << endl;
+                cout << curr->Data.get_ID() << "  ||  " << curr->Data.get_Name() << "  ||  " << curr->Data.get_Email() << "  ||  " << curr->Data.get_Phone() << "  ||  " << curr->Data.get_Address() << curr->Data.get_Password() << endl ;
+                curr=curr->next;
             }
+            cout << "-------------------------------------------------------------" << endl;
         }
     }
     void deleteStudent(int id){
     if (head == NULL){
-        cout << "no students exist" << endl;
+        cout << "There are no students" << endl;
         return;
     }
-    Node<Student> *curr = head;
+    Node *curr = head;
+    if (curr->Data.get_ID() == id){
+        head=curr->next;
+        delete curr;
+        return;
+    }
     while(curr->next != NULL){
-    if (curr->next->Data.get_ID == id){
+    if (curr->next->Data.get_ID() == id){
         break;
     }   
     curr = curr->next; 
     } 
-    Node<Student> *temp = curr->next;
+    Node *temp = curr->next;
     curr->next = temp->next;
-    delete curr;
+    delete temp;
     }
 };
 
