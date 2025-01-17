@@ -1,8 +1,7 @@
 #include<iostream>
-#include"Course.h"
-#include"BST.h"
+#include "University.h"
 using namespace std;
 int main(){
-
+university nileuniversity;
 
 }
