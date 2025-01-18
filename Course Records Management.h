@@ -12,7 +12,10 @@ class Course_Records_Managment {
 public:
     BSTNode *root = NULL;
     void addCourse(Course x) {
-        root = insertNode(root,x);
+        
+        cout << "Inseted at " << insertNode(root,x) << endl;
+        cout << "-------------------------------------------------------------" << endl;
+
     }
     BSTNode* insertNode(BSTNode *&root, Course val){
         if (root == NULL){
@@ -29,29 +32,56 @@ public:
         return root;
     }
     void dropCourse(int x) {
-        //remove(x);
-    }
+        if (search(root,x)){
+            remove(root,x);
+            cout << "Object Deleted Successfully" << endl;
+            cout << "-------------------------------------------------------------" << endl;
+            return;
 
-   /* void remove(string x){
-        if (root == NULL){
-            return false;
+        }else {
+            return;
         }
-        if (root->Content.CourseID == x){
-            //delete
-        }
-        if (root->Content.CourseID > x){
-            return search(root->left,x);
-        }
-        if (root->Content.CourseID < x){
-            return search(root->right,x);
-        } 
     }
-    */
+    Course minValue(BSTNode *root){
+        if (root->left == NULL)
+            return root->Content;
+        return minValue(root->left);
+    }
+    BSTNode* remove(BSTNode* root, int x){
+        if (root == NULL){
+            return root;
+        }
+        if (root->Content.get_id() > x){
+            root->left = remove(root->left,x);
+        }
+        if (root->Content.get_id() < x){
+            root->right = remove(root->right,x);
+        } 
+        if (root->Content.get_id() == x){
+            if (root->left == NULL && root->right == NULL){
+                return NULL;
+            }
+            if(root->left == NULL){
+                return root->right;
+            }
+            if(root->right == NULL){
+                return root->left;
+            }
+            Course n = minValue(root);
+            root->right = remove(root->right,n.get_id());
+            root->Content = n;
+        }
+        return root;
+    }
+    
     bool search(BSTNode *root ,int x){
         if (root == NULL){
+            cout << "Object Doesn't Exist" << endl;
             return false;
         }
         if (root->Content.get_id() == x){
+            cout << "Object Found" << endl;
+            cout << "Deleting..." << endl;
             return true;
         }
         if (root->Content.get_id() > x){

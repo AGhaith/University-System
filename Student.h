@@ -2,8 +2,8 @@
 #define STUDENT_H
 
 #include <iostream>
-#include "SLL.h"
-#include "Course.h"
+class Course;
+class SLL;
 using namespace std ;
 
 

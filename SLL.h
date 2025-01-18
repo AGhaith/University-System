@@ -2,32 +2,31 @@
 #define SLL_H
 
 #include <iostream>
-#include"Student.h"
+class Student;
 using namespace std ;
 
 
 class Node{
 
-    public:
-
-    Student Data;
+public:
+    Student StudentData;
     Node* next = NULL;
 
     Node(Student Data){
-        this->Data = Data ; 
+        this->StudentData = Data ; 
     }
 
 };
 
 class SLL{
-
+    private :
+        Node* head = NULL ;
     public:
 
-    Node* head = NULL ;
     
-    void insert(Student Data){
+    void insert(Student mydata){
 
-        Node* newnode = new Node(Data) ; 
+        Node* newnode = new Node(mydata) ; 
 
         if (head==NULL){
 
@@ -55,7 +54,7 @@ class SLL{
 
             while (curr != NULL){
                 cout << "-------------------------------------------------------------" << endl;
-                cout << curr->Data.get_ID() << "  ||  " << curr->Data.get_Name() << "  ||  " << curr->Data.get_Email() << "  ||  " << curr->Data.get_Phone() << "  ||  " << curr->Data.get_Address() << curr->Data.get_Password() << endl ;
+                cout << curr->StudentData.get_ID() << "  ||  " << curr->StudentData.get_Name() << "  ||  " << curr->StudentData.get_Email() << "  ||  " << curr->StudentData.get_Phone() << "  ||  " << curr->StudentData.get_Address() << curr->StudentData.get_Password() << endl ;
                 curr=curr->next;
             }
             cout << "-------------------------------------------------------------" << endl;
@@ -67,13 +66,13 @@ class SLL{
         return;
     }
     Node *curr = head;
-    if (curr->Data.get_ID() == id){
+    if (curr->StudentData.get_ID() == id){
         head=curr->next;
         delete curr;
         return;
     }
     while(curr->next != NULL){
-    if (curr->next->Data.get_ID() == id){
+    if (curr->next->StudentData.get_ID() == id){
         break;
     }   
     curr = curr->next; 

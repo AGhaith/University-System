@@ -11,8 +11,8 @@ class Student_Records_Management{
     private:
     SLL SLL_Students ; 
     public:
-    void Add_student(Student A){
-        SLL_Students.insert(A) ; 
+    void Add_student(Student mystudent){
+        SLL_Students.insert(mystudent) ; 
     }
     void Delete_Student(int ID){
         SLL_Students.deleteStudent(ID) ; 
