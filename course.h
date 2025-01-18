@@ -19,7 +19,7 @@ public:
         CourseCredits = credits;
     }
 
-    int get_id() {
+    int get_ID() {
         return CourseID;
     }
 
@@ -34,7 +34,7 @@ public:
     int get_credits() {
         return CourseCredits;
     }
-    bool operator==(const Course& other) const {
+    bool operator==(Course other) const {
         return this->CourseID == other.CourseID ;
     }
 };

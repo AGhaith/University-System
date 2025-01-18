@@ -22,11 +22,27 @@ class SLL{
     private :
         Node<T>* head = NULL ;
     public:
-
+    //overriding bool operator in students and courses so that when comparing student to student the comparison is done by id
     bool Find(T x){
         Node<T>*curr = head;
         while(curr!=NULL){
             if (curr->Data == x){
+                break;
+            }
+            curr = curr->next;
+        }
+        if (curr == NULL){
+            return false;
+        }else {
+            return true;
+        }
+
+    }
+    //If given ID
+    bool Find_By_ID(int x){
+        Node<T>*curr = head;
+        while(curr!=NULL){
+            if (curr->Data->get_ID() == x){
                 break;
             }
             curr = curr->next;

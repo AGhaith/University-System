@@ -82,6 +82,9 @@ class Student{
     string get_Password(){
         return Password ; 
     }
+    bool operator==(Student other) const {
+        return this->Student_name == other.Student_name ;
+    }
 };
 
 #endif

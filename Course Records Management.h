@@ -22,7 +22,7 @@ public:
             root = new BSTNode(val);
             return root;
         }
-        if (val.get_id() > root->Content.get_id()){
+        if (val.get_ID() > root->Content.get_ID()){
             root->right = insertNode(root->right,val);
         }
         else {
@@ -51,13 +51,13 @@ public:
         if (root == NULL){
             return root;
         }
-        if (root->Content.get_id() > x){
+        if (root->Content.get_ID() > x){
             root->left = remove(root->left,x);
         }
-        if (root->Content.get_id() < x){
+        if (root->Content.get_ID() < x){
             root->right = remove(root->right,x);
         } 
-        if (root->Content.get_id() == x){
+        if (root->Content.get_ID() == x){
             if (root->left == NULL && root->right == NULL){
                 return NULL;
             }
@@ -68,7 +68,7 @@ public:
                 return root->left;
             }
             Course n = minValue(root);
-            root->right = remove(root->right,n.get_id());
+            root->right = remove(root->right,n.get_ID());
             root->Content = n;
         }
         return root;
@@ -79,15 +79,15 @@ public:
             cout << "Object Doesn't Exist" << endl;
             return false;
         }
-        if (root->Content.get_id() == x){
+        if (root->Content.get_ID() == x){
             cout << "Object Found" << endl;
             cout << "Deleting..." << endl;
             return true;
         }
-        if (root->Content.get_id() > x){
+        if (root->Content.get_ID() > x){
             return search(root->left,x);
         }
-        if (root->Content.get_id() < x){
+        if (root->Content.get_ID() < x){
             return search(root->right,x);
         }
     }
