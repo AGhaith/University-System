@@ -6,11 +6,11 @@
 #include "Course.h"
 using namespace std;
 
-template <class T>
+
 class BSTNode {
 public:
-    BSTNode<T>* right = NULL;
-    BSTNode<T>* left = NULL;
+    BSTNode* right = NULL;
+    BSTNode* left = NULL;
     Course Content;
     BSTNode(Course Content) {
         this->Content = Content;

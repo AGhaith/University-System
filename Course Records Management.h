@@ -7,23 +7,23 @@
 #include "BST.h"
 using namespace std;
 
-template <class T>
-class CourseRecordManagment {
+
+class Course_Records_Managment {
 public:
-    BSTNode<T> *root = NULL;
+    BSTNode *root = NULL;
     void addCourse(Course x) {
         root =insertNode(root,x);
     }
-    BSTNode<T>* insertNode(BSTNode<T> *&root, Course val){
+    BSTNode* insertNode(BSTNode *&root, Course val){
         if (root == NULL){
-            root = new BSTNode<T>(val);
+            root = new BSTNode(val);
             return root;
         }
-        if (val > root->value){
-            root->right = insertNode(root->right,val);
+        if (val.get_id() > root->Content.get_id()){
+            root->right = insertNode(root->right,val.get_id());
         }
         else {
-            root->left = insertNode(root->left,val);
+            root->left = insertNode(root->left,val.get_id());
 
         }
         return root;
