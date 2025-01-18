@@ -47,13 +47,12 @@ nileuniversity.Add_To_Student_Record(s3);
 // Printing the record
 nileuniversity.display_Student_Records();
 // Deleting From the record
-nileuniversity.Delete_Student_Record(1);
+nileuniversity.Delete_Student_Record(2);
 // Printing Again
 nileuniversity.display_Student_Records();
 // Creating Courses (string name , string instructor , int credits )
 Course c1("MATH101","NULL",4);
 nileuniversity.Add_New_Course(c1);
 nileuniversity.Drop_Course(1);
-
 
 }
