@@ -27,6 +27,13 @@ public:
         StudentRecords.Delete_Student(id);
 
     }
+    void Add_New_Course(Course A){
+        CourseRecords.addCourse(A);
+    }
+    void Drop_Course(int id){
+        CourseRecords.dropCourse(id);
+
+    }
 };
 
 

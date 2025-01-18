@@ -7,12 +7,13 @@
 using namespace std ;
 
 
-int id=1;
+int Student_ID_Counter=1;
+
 class Student{
 
     private:
 
-    int Student_id = 0 ; 
+    int Student_id; 
     string Student_name ="" ;
     string Email = "" ; 
     string Phone = "" ; 
@@ -22,11 +23,11 @@ class Student{
 
     public:
     Student(){
-        
+
     }
     Student(string name , string Email , string Phone ,string Address , string Password){
-        this->Student_id = id ;
-        id++; 
+        this->Student_id = Student_ID_Counter ;
+        Student_ID_Counter++; 
         this->Student_name = name ; 
         this->Email = Email ;
         this->Phone = Phone ;

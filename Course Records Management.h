@@ -12,7 +12,7 @@ class Course_Records_Managment {
 public:
     BSTNode *root = NULL;
     void addCourse(Course x) {
-        root =insertNode(root,x);
+        root = insertNode(root,x);
     }
     BSTNode* insertNode(BSTNode *&root, Course val){
         if (root == NULL){
@@ -20,15 +20,15 @@ public:
             return root;
         }
         if (val.get_id() > root->Content.get_id()){
-            root->right = insertNode(root->right,val.get_id());
+            root->right = insertNode(root->right,val);
         }
         else {
-            root->left = insertNode(root->left,val.get_id());
+            root->left = insertNode(root->left,val);
 
         }
         return root;
     }
-    void dropCourse(string x) {
+    void dropCourse(int x) {
         //remove(x);
     }
 
@@ -47,17 +47,17 @@ public:
         } 
     }
     */
-    bool search(BSTNode<T> *root ,string x){
+    bool search(BSTNode *root ,int x){
         if (root == NULL){
             return false;
         }
-        if (root->Content.CourseID == x){
+        if (root->Content.get_id() == x){
             return true;
         }
-        if (root->Content.CourseID > x){
+        if (root->Content.get_id() > x){
             return search(root->left,x);
         }
-        if (root->Content.CourseID < x){
+        if (root->Content.get_id() < x){
             return search(root->right,x);
         }
     }

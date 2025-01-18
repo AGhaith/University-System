@@ -4,22 +4,22 @@
 #include <iostream>
 #include <string>
 using namespace std;
-
+int Course_ID_Counter = 1;
 class Course {
 private:
-    string CourseID;
+    int CourseID, CourseCredits;
     string CourseName, CourseInstructor;
-    int CourseCredits;
 
 public:
-    Course(string ID = "", string name = "", string instructor = "", int credits = 0) {
-        CourseID = ID;
+    Course(string name = "", string instructor = "", int credits = 0) {
+        CourseID = Course_ID_Counter;
+        Course_ID_Counter++;
         CourseName = name;
         CourseInstructor = instructor;
         CourseCredits = credits;
     }
 
-    string get_id() {
+    int get_id() {
         return CourseID;
     }
 
