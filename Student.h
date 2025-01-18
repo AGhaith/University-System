@@ -2,8 +2,10 @@
 #define STUDENT_H
 
 #include <iostream>
-class Course;
-class SLL;
+#include <unordered_map>
+#include <string>
+#include "Course.h" // Include full definition of Course
+#include "SLL.h"    // Include full definition of SLL
 using namespace std ;
 
 
@@ -14,13 +16,12 @@ class Student{
     private:
 
     int Student_id; 
-    string Student_name ="" ;
-    string Email = "" ; 
-    string Phone = "" ; 
-    string Address = "" ; 
-    string Password = "" ; 
-    //SLL<Course> finished_courses ;
-
+    string Student_name  ;
+    string Email  ; 
+    string Phone  ; 
+    string Address  ; 
+    string Password  ; 
+    unordered_map<int,SLL<Course>> FinishedCoursesHashmap;
     public:
     Student(){
 
@@ -38,13 +39,30 @@ class Student{
     int get_ID(){
         return Student_id ; 
     }
-/*  
-    void Add_Finshed_courses(Course course){
-
-        finished_courses.insert(course);
+    int hashing(Course mycourse){
+        int final = 0;
+        string a = mycourse.get_name();
+        for(int i = 0 ; i < a.length() ; i++){
+            int temp = a[i];
+            if (i-1==a.length()){
+                final = final + temp*2;
+            }else {
+                final+=a[i];
+            }
+        }
+        return final;
 
     }
-    void display_enrolled_courses(){
+    void Add_To_Finshed_courses(Course mycourse){
+
+        FinishedCoursesHashmap[hashing(mycourse)].insert(mycourse);
+
+    }
+    bool LookUp_Course_In_Hashtable(Course x){
+        int index = hashing(x);
+        return FinishedCoursesHashmap[index].Find(x);
+    }
+    /*void display_enrolled_courses(){
 
         finished_courses.display() ; 
     }*/

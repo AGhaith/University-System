@@ -5,28 +5,42 @@
 class Student;
 using namespace std ;
 
-
+template<class T>
 class Node{
 
 public:
-    Student StudentData;
+    T Data;
     Node* next = NULL;
 
-    Node(Student Data){
-        this->StudentData = Data ; 
+    Node(T Data){
+        this->Data = Data ; 
     }
 
 };
-
+template <class T>
 class SLL{
     private :
-        Node* head = NULL ;
+        Node<T>* head = NULL ;
     public:
 
-    
-    void insert(Student mydata){
+    bool Find(T x){
+        Node<T>*curr = head;
+        while(curr!=NULL){
+            if (curr->Data == x){
+                break;
+            }
+            curr = curr->next;
+        }
+        if (curr == NULL){
+            return false;
+        }else {
+            return true;
+        }
 
-        Node* newnode = new Node(mydata) ; 
+    }
+    void insert(T mydata){
+
+        Node<T>* newnode = new Node<T>(mydata) ; 
 
         if (head==NULL){
 
@@ -34,7 +48,7 @@ class SLL{
         }
         else{
 
-            Node* temp = head ; 
+            Node<T>* temp = head ; 
             while (temp->next != NULL){
                 temp = temp->next ;
             }
@@ -42,8 +56,8 @@ class SLL{
         }
 
     }
-    void display(){
-        Node *curr = head ;
+    void Display_Student_Records(){
+        Node<T> *curr = head ;
 
         if (head == NULL){
 
@@ -54,7 +68,7 @@ class SLL{
 
             while (curr != NULL){
                 cout << "-------------------------------------------------------------" << endl;
-                cout << curr->StudentData.get_ID() << "  ||  " << curr->StudentData.get_Name() << "  ||  " << curr->StudentData.get_Email() << "  ||  " << curr->StudentData.get_Phone() << "  ||  " << curr->StudentData.get_Address() << curr->StudentData.get_Password() << endl ;
+                cout << curr->Data.get_ID() << "  ||  " << curr->Data.get_Name() << "  ||  " << curr->Data.get_Email() << "  ||  " << curr->Data.get_Phone() << "  ||  " << curr->Data.get_Address() << curr->Data.get_Password() << endl ;
                 curr=curr->next;
             }
             cout << "-------------------------------------------------------------" << endl;
@@ -65,19 +79,19 @@ class SLL{
         cout << "There are no students" << endl;
         return;
     }
-    Node *curr = head;
-    if (curr->StudentData.get_ID() == id){
+    Node<T> *curr = head;
+    if (curr->Data.get_ID() == id){
         head=curr->next;
         delete curr;
         return;
     }
     while(curr->next != NULL){
-    if (curr->next->StudentData.get_ID() == id){
+    if (curr->next->Data.get_ID() == id){
         break;
     }   
     curr = curr->next; 
     } 
-    Node *temp = curr->next;
+    Node<T> *temp = curr->next;
     curr->next = temp->next;
     delete temp;
     }

@@ -9,16 +9,20 @@ using namespace std ;
 
 class Student_Records_Management{
     private:
-    SLL SLL_Students ; 
+    SLL<Student> SLL_Students ; 
     public:
     void Add_student(Student mystudent){
         SLL_Students.insert(mystudent) ; 
+    }
+    void Add_Course(Student mystudent , Course x){
+        mystudent.Add_To_Finshed_courses(x);
+        cout << "Course " << x.get_name() << " Successfully Added to " << mystudent.get_Name() << "'s " << "Transcript" << endl;
     }
     void Delete_Student(int ID){
         SLL_Students.deleteStudent(ID) ; 
     }
     void display(){
-        SLL_Students.display();
+        SLL_Students.Display_Student_Records();
     }
 };
 

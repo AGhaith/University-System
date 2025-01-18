@@ -1,5 +1,4 @@
 #include<iostream>
-
 #include "Student.h"
 /* 
     Student Class:
@@ -19,19 +18,19 @@
 #include "University.h"
 
 /* 
-        University Class :
-            Student Records Managment Class Using Single Linked List(SLL):
+    University Class :
+        Student Records Managment Class Using Single Linked List(SLL):
 
-                Add_To_Student_Record(Student) to add a new student to the record
-                Delete_Student_Record(id) to search for a student and delete them using their id
-                Display_Student_Records() to print all student details
-                Add_Course_To_Student()
-                Drop_Course_For_Student()
+            Add_To_Student_Record(Student) to add a new student to the record
+            Delete_Student_Record(id) to search for a student and delete them using their id
+            Display_Student_Records() to print all student details
+            Add_Course_To_Student()
+            Drop_Course_For_Student()
 
-            Course Records Managment Class Using Binary Search Tree(BST):
+        Course Records Managment Class Using Binary Search Tree(BST):
 
-                Add_New_Course() -> Add a new course To The University
-                Drop_Course() -> Remove That Course From University
+            Add_New_Course() -> Add a new course To The University
+            Drop_Course() -> Remove That Course From University
 */
 using namespace std;
 int main(){
@@ -54,5 +53,6 @@ nileuniversity.display_Student_Records();
 Course c1("MATH101","NULL",4);
 nileuniversity.Add_New_Course(c1);
 nileuniversity.Drop_Course(1);
+nileuniversity.Add_To_Student_Record(s1,c1);
 
 }

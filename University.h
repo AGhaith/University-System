@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 #include "Course.h"
+#include "Student.h"
+#include "SLL.h"
 #include "Course Registration.h"
 #include "Course Records Management.h"
 #include "Student Records Management.h"
@@ -22,6 +24,9 @@ public:
     }
     void Add_To_Student_Record(Student a){
         StudentRecords.Add_student(a);
+    }
+    void Add_To_Student_Record(Student a,Course x){
+        StudentRecords.Add_Course(a,x);
     }
     void Delete_Student_Record(int id){
         StudentRecords.Delete_Student(id);

@@ -34,6 +34,9 @@ public:
     int get_credits() {
         return CourseCredits;
     }
+    bool operator==(const Course& other) const {
+        return this->CourseID == other.CourseID ;
+    }
 };
 
 
