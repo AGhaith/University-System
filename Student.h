@@ -58,7 +58,8 @@ class Student{
         FinishedCoursesHashmap[hashing(mycourse)].insert(mycourse);
 
     }
-    bool LookUp_Course_In_Hashtable(Course x){
+    // Look up courses with hashtable
+    bool searchWithHashing(Course x){
         int index = hashing(x);
         return FinishedCoursesHashmap[index].Find(x);
     }
