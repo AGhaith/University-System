@@ -1,6 +1,6 @@
 #ifndef SLL_H
 #define SLL_H
-
+#include "helper.cpp"
 #include <iostream>
 class Student;
 using namespace std ;
@@ -91,10 +91,15 @@ class SLL{
         }
     }
     bool checkuserinfo(string email,string password){
-    
-        SLLNode<T>*curr = head;
+    email = lower(email);
+    SLLNode<T>*curr = head;
+    if (curr == NULL){
+        return false;
+    }
+    string compare = lower(curr->Data.Get_Email());
+
         while(curr!=NULL){
-            if (curr->Data.Get_Email() == email){
+            if (compare == email){
                 break;
             }
             curr = curr->next;

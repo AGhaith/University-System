@@ -6,21 +6,9 @@
 #include "University.h"
 #include "windows.h"
 #include "Student.h"
-using namespace std ;
-#define RESET "\033[0m"
-void clear() {
-    system("CLS"); 
-}
-void printBlue(string text) {
-    
-    const string BRIGHT_BLUE = "\033[94m";
-    std::cout << BRIGHT_BLUE << text << RESET;
-}
 
-void printWhite(string text) {
-    const string WHITE = "\033[37m";
-    std::cout << WHITE << text << RESET;
-}
+using namespace std ;
+
 class CUI{
 private:
 university *MyUniversity;
@@ -39,8 +27,10 @@ printBlue("*********************************************\n");
     First_Page();
 }
 void First_Page(){
+
  int choice;
     while (true) {
+
         printBlue("\n--- NILE UNIVERSITY MANAGEMENT SYSTEM ---\n");
         printWhite("1. Login\n");
         printWhite("2. Register\n");
@@ -55,9 +45,11 @@ void First_Page(){
             registerpage();
             break;
         default:
+            clear();
             break;
         }
     }
+
 
 }
 void loginpage(){
@@ -117,6 +109,11 @@ void studentregisterpage(){
     cin >> address;
         printWhite("Enter Your Password: ");
     cin >> password;
+    while(password.length() < 8 ){
+        cout << "e7trm nfsk y7bb" << endl;
+        printWhite("Enter Your Password: ");
+        cin >> password;
+    }
     Student newstudent(fname,lname,phone,address,password);
     (*MyUniversity).Add_To_Student_Record(newstudent);
     clear();

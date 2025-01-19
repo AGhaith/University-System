@@ -1,6 +1,6 @@
 #ifndef UNIVERSITY_H
 #define UNIVERSITY_H
-
+#include <fstream>
 #include <iostream>
 #include <string>
 #include "Course.h"
@@ -47,6 +47,7 @@ public:
         return ModeratorRecords.check(email,password);
     }
     */
+    
 };
 
 

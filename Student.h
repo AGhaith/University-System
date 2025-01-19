@@ -10,7 +10,7 @@
 using namespace std ;
 
 
-int Student_ID_Counter=1;
+int Student_ID_Counter=250000000;
 
 class Student:public Person{
 
@@ -19,6 +19,7 @@ class Student:public Person{
     int Student_id; 
     unordered_map<int,SLL<Course>> FinishedCoursesHashmap;
     string suffix = "@nu.edu.eg";
+    string dot = ".";
     public:
     Student(){
 
@@ -28,7 +29,7 @@ class Student:public Person{
         Student_ID_Counter++; 
         this->First_name = first_name ; 
         this->Last_name = last_name ; 
-        this->Email = first_name[0]+last_name+suffix;
+        this->Email = first_name[0]+dot+last_name+suffix+to_string(Student_id%100);
         this->Phone = Phone ;
         this->Address = Address ; 
         this->Password = Password ;
