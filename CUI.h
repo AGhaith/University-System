@@ -5,6 +5,7 @@
 #include <iostream>
 #include "University.h"
 #include "windows.h"
+#include "Student.h"
 using namespace std ;
 #define RESET "\033[0m"
 void clear() {
@@ -77,6 +78,54 @@ clear();
     
 }
 void registerpage(){
+    clear();
+    int choice;
+    printBlue("\n--- NILE UNIVERSITY MANAGEMENT SYSTEM ---\n");
+    printWhite("1. Student Account\n");
+    printWhite("2. Moderator Account\n");
+    printWhite("Please select an option: ");
+    cin >> choice;
+    switch (choice)
+    {
+    case 1:
+        studentregisterpage();
+        break;
+    case 2:
+        registerpage();
+        break;
+    default:
+        break;
+    }
+
+}
+void studentregisterpage(){
+    clear();
+    printBlue("\n--- NILE UNIVERSITY MANAGEMENT SYSTEM ---\n");
+    string fname,lname,address,phone,password;
+    printWhite("Enter Student Email: ");
+    cin >> Email;
+        printWhite("Enter Student Email: ");
+    cin >> Email;
+        printWhite("Enter Student Email: ");
+    cin >> Email;
+        printWhite("Enter Student Email: ");
+    cin >> Email;
+        printWhite("Enter Student Email: ");
+    cin >> Email;
+    Student newstudent();
+    (*MyUniversity).Add(newstudent);
+    cin >> choice;
+    switch (choice)
+    {
+    case 1:
+        studentregisterpage();
+        break;
+    case 2:
+        registerpage();
+        break;
+    default:
+        break;
+    }
 
 }
 
