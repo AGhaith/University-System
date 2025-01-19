@@ -35,7 +35,7 @@
 using namespace std;
 int main(){
 university nileuniversity;
-// Creating Students (string name , string Email , string Phone ,string Address , string Password)
+// Creating Students 
 Student s1("Ahmed Ghaith","A.Wesam2300@nu.edu.eg","01021565688","8th District","Password@1");
 Student s2("Omar Sholkamy","A.Wesam2300@nu.edu.eg","01021565688","8th District","Password@2");
 Student s3("Yousef Amir","A.Wesam2300@nu.edu.eg","01021565688","8th District","Password@3");
@@ -49,7 +49,7 @@ nileuniversity.display_Student_Records();
 nileuniversity.Delete_Student_Record(2);
 // Printing Again
 nileuniversity.display_Student_Records();
-// Creating Courses (string name , string instructor , int credits )
+// Creating Courses 
 Course c1("MATH101","NULL",4);
 nileuniversity.Add_New_Course(c1);
 nileuniversity.Drop_Course(1);

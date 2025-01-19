@@ -4,16 +4,12 @@ class SLL;
 class Student;
 class Course;
 using namespace std ;
-
-int main(){
-    unordered_map<int,Course> Hashtable;
-    Hashtable[1];
-
-
-
-}
-void Add_To_HashTable(Course x){
-    Hashtable[].
-
-
+class Test {
+public:
+Test() { cout << "Constructor" << endl; }
+};
+int main() {
+Test t1;
+Test t2;
+return 0;
 }
