@@ -5,14 +5,14 @@
 using namespace std ; 
 
 template<class T>
-class Node{
+class StackNode{
     
     public:
 
     T Data  ; 
-    Node *next = NULL ; 
+    StackNode<T> *next = NULL ; 
 
-    Node(T Data){
+    StackNode(T Data){
         
         this->Data = Data ;
 
@@ -24,13 +24,13 @@ class Stack{
 
     private:
 
-    Node<T> *top = NULL ; 
+    StackNode<T> *top = NULL ; 
 
     public:
 
     void Push( T Data ){
 
-        Node<T>* newnode = new Node<T>(Data) ; 
+        StackNode<T>* newnode = new StackNode<T>(Data) ; 
 
         if (is_empty()){
 
@@ -55,7 +55,7 @@ class Stack{
 
         else{
 
-            Node<T> *temp = top ; 
+            StackNode<T> *temp = top ; 
             top = top->next ; 
             //top removed han3ml eh baadeha ? ,,return ?
             delete temp  ; 
@@ -98,7 +98,7 @@ class Stack{
 
         while(!is_empty()){
 
-            pop() ; 
+            Pop() ; 
 
         }
     }

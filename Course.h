@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include "Stack.h"
 using namespace std;
 int Course_ID_Counter = 1;
 class Course {
@@ -17,6 +18,7 @@ public:
         CourseName = name;
         CourseInstructor = instructor;
         CourseCredits = credits;
+        Stack<Course> Prerequisites;
     }
 
     int get_ID() {

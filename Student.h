@@ -5,38 +5,36 @@
 #include <unordered_map>
 #include <string>
 #include "Course.h" // Include full definition of Course
+#include "Person.h"
 #include "SLL.h"    // Include full definition of SLL
 using namespace std ;
 
 
 int Student_ID_Counter=1;
 
-class Student{
+class Student:public Person{
 
     private:
 
     int Student_id; 
-    string Student_name  ;
-    string Email  ; 
-    string Phone  ; 
-    string Address  ; 
-    string Password  ; 
     unordered_map<int,SLL<Course>> FinishedCoursesHashmap;
+    string suffix = "@nu.edu.eg";
     public:
     Student(){
 
     }
-    Student(string name , string Email , string Phone ,string Address , string Password){
+    Student(string first_name, string last_name , string Phone ,string Address , string Password){
         this->Student_id = Student_ID_Counter ;
         Student_ID_Counter++; 
-        this->Student_name = name ; 
-        this->Email = Email ;
+        this->First_name = first_name ; 
+        this->Last_name = last_name ; 
+        this->Email = first_name[0]+last_name+suffix;
         this->Phone = Phone ;
         this->Address = Address ; 
         this->Password = Password ;
     }
     
-    int get_ID(){
+    int Get_ID(){
         return Student_id ; 
     }
     int hashing(Course mycourse){
@@ -67,24 +65,11 @@ class Student{
 
         finished_courses.display() ; 
     }*/
-    string get_Name(){
-        return Student_name ; 
-    }
-    string get_Email(){
-        return Email ; 
-    }
-    string get_Phone(){
-        return Phone ; 
-    }
-    string get_Address(){
-        return Address ; 
-    }
-    string get_Password(){
-        return Password ; 
-    }
+    
     bool operator==(Student other) const {
-        return this->Student_name == other.Student_name ;
+        return this->Student_id == other.Student_id ;
     }
+
 };
 
 #endif

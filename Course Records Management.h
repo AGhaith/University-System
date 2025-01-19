@@ -90,6 +90,7 @@ public:
         if (root->Content.get_ID() < x){
             return search(root->right,x);
         }
+        return false;
     }
 };
 

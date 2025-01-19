@@ -16,13 +16,16 @@ class Student_Records_Management{
     }
     void Add_Course(Student mystudent , Course x){
         mystudent.Add_To_Finshed_courses(x);
-        cout << "Course " << x.get_name() << " Successfully Added to " << mystudent.get_Name() << "'s " << "Transcript" << endl;
+        cout << "Course " << x.get_name() << " Successfully Added to " << mystudent.Get_First_Name() << " " << mystudent.Get_Last_Name() << "'s " << "Transcript" << endl;
     }
     void Delete_Student(int ID){
         SLL_Students.deleteStudent(ID) ; 
     }
     void display(){
         SLL_Students.Display_Student_Records();
+    }
+    bool check(string email,string password){
+        return SLL_Students.checkuserinfo(email,password);
     }
 };
 

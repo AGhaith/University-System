@@ -39,6 +39,14 @@ public:
         CourseRecords.dropCourse(id);
 
     }
+    bool checkstudentdetails(string email,string password){
+        return StudentRecords.check(email,password);
+    }
+    /*
+    bool checkmoderatordetails(string email,string password){
+        return ModeratorRecords.check(email,password);
+    }
+    */
 };
 
 

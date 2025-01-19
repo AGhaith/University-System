@@ -6,13 +6,13 @@ class Student;
 using namespace std ;
 
 template<class T>
-class Node{
+class SLLNode{
 
 public:
     T Data;
-    Node* next = NULL;
+    SLLNode* next = NULL;
 
-    Node(T Data){
+    SLLNode(T Data){
         this->Data = Data ; 
     }
 
@@ -20,11 +20,11 @@ public:
 template <class T>
 class SLL{
     private :
-        Node<T>* head = NULL ;
+        SLLNode<T>* head = NULL ;
     public:
     //overriding bool operator in students and courses so that when comparing student to student the comparison is done by id
     bool Find(T x){
-        Node<T>*curr = head;
+        SLLNode<T>*curr = head;
         while(curr!=NULL){
             if (curr->Data == x){
                 break;
@@ -40,9 +40,9 @@ class SLL{
     }
     //If given ID
     bool Find_By_ID(int x){
-        Node<T>*curr = head;
+        SLLNode<T>*curr = head;
         while(curr!=NULL){
-            if (curr->Data->get_ID() == x){
+            if (curr->Data.Get_ID() == x){
                 break;
             }
             curr = curr->next;
@@ -56,7 +56,7 @@ class SLL{
     }
     void insert(T mydata){
 
-        Node<T>* newnode = new Node<T>(mydata) ; 
+        SLLNode<T>* newnode = new SLLNode<T>(mydata) ; 
 
         if (head==NULL){
 
@@ -64,7 +64,7 @@ class SLL{
         }
         else{
 
-            Node<T>* temp = head ; 
+            SLLNode<T>* temp = head ; 
             while (temp->next != NULL){
                 temp = temp->next ;
             }
@@ -73,7 +73,7 @@ class SLL{
 
     }
     void Display_Student_Records(){
-        Node<T> *curr = head ;
+        SLLNode<T> *curr = head ;
 
         if (head == NULL){
 
@@ -84,30 +84,50 @@ class SLL{
 
             while (curr != NULL){
                 cout << "-------------------------------------------------------------" << endl;
-                cout << curr->Data.get_ID() << "  ||  " << curr->Data.get_Name() << "  ||  " << curr->Data.get_Email() << "  ||  " << curr->Data.get_Phone() << "  ||  " << curr->Data.get_Address() << curr->Data.get_Password() << endl ;
+                cout << curr->Data.Get_ID() << "  ||  " << curr->Data.Get_First_Name() << " " << curr->Data.Get_Last_Name() << "  ||  " << curr->Data.Get_Email() << "  ||  " << curr->Data.Get_Phone() << "  ||  " << curr->Data.Get_Address() << curr->Data.Get_Password() << endl ;
                 curr=curr->next;
             }
             cout << "-------------------------------------------------------------" << endl;
         }
+    }
+    bool checkuserinfo(string email,string password){
+    
+        SLLNode<T>*curr = head;
+        while(curr!=NULL){
+            if (curr->Data.Get_Email() == email){
+                break;
+            }
+            curr = curr->next;
+        }
+        if (curr == NULL){
+            return false;
+        }else {
+            if(curr->Data.Get_Password() == password){
+            return true;
+            }
+            return false;
+        }
+
+    
     }
     void deleteStudent(int id){
     if (head == NULL){
         cout << "There are no students" << endl;
         return;
     }
-    Node<T> *curr = head;
-    if (curr->Data.get_ID() == id){
+    SLLNode<T> *curr = head;
+    if (curr->Data.Get_ID() == id){
         head=curr->next;
         delete curr;
         return;
     }
     while(curr->next != NULL){
-    if (curr->next->Data.get_ID() == id){
+    if (curr->next->Data.Get_ID() == id){
         break;
     }   
     curr = curr->next; 
     } 
-    Node<T> *temp = curr->next;
+    SLLNode<T> *temp = curr->next;
     curr->next = temp->next;
     delete temp;
     }
