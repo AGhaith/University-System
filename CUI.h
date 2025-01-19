@@ -34,7 +34,7 @@ printBlue("*********************************************\n");
     printWhite("                   WELCOME\n");
     printWhite("      NILE UNIVERSITY MANAGEMENT SYSTEM\n");
     printBlue("*********************************************\n");
-    Sleep(5000);
+    Sleep(2500);
     clear();
     First_Page();
 }
@@ -102,30 +102,28 @@ void studentregisterpage(){
     clear();
     printBlue("\n--- NILE UNIVERSITY MANAGEMENT SYSTEM ---\n");
     string fname,lname,address,phone,password;
-    printWhite("Enter Student Email: ");
-    cin >> Email;
-        printWhite("Enter Student Email: ");
-    cin >> Email;
-        printWhite("Enter Student Email: ");
-    cin >> Email;
-        printWhite("Enter Student Email: ");
-    cin >> Email;
-        printWhite("Enter Student Email: ");
-    cin >> Email;
-    Student newstudent();
-    (*MyUniversity).Add(newstudent);
-    cin >> choice;
-    switch (choice)
-    {
-    case 1:
-        studentregisterpage();
-        break;
-    case 2:
-        registerpage();
-        break;
-    default:
-        break;
+    printWhite("Enter Student First Name: ");
+    cin >> fname;
+        printWhite("Enter Your Last Name: ");
+    cin >> lname;
+    printWhite("Enter Your Phone: ");
+    cin >> phone;
+    while(phone.length() < 11 || phone[0] != '0' || phone[1] != '1'){
+        cout << "e7trm nfsk " << endl;
+        printWhite("Enter Your Phone: ");
+        cin >> phone;
     }
+        printWhite("Enter Your Address: ");
+    cin >> address;
+        printWhite("Enter Your Password: ");
+    cin >> password;
+    Student newstudent(fname,lname,phone,address,password);
+    (*MyUniversity).Add_To_Student_Record(newstudent);
+    clear();
+    printBlue("\n--- NILE UNIVERSITY MANAGEMENT SYSTEM ---\n");
+    cout << "Student Added Successfully" << endl;
+    cout << "Email : " << newstudent.Get_Email()<< endl;
+    cout << "ID : " << newstudent.Get_ID() << endl;
 
 }
 
