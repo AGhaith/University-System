@@ -28,7 +28,7 @@ printBlue("*********************************************\n");
 }
 void First_Page(){
 
- int choice;
+ char choice;
     while (true) {
 
         printBlue("\n--- NILE UNIVERSITY MANAGEMENT SYSTEM ---\n");
@@ -38,10 +38,10 @@ void First_Page(){
         cin >> choice;
         switch (choice)
         {
-        case 1:
+        case '1':
             loginpage();
             break;
-        case 2:
+        case '2':
             registerpage();
             break;
         default:
@@ -71,7 +71,7 @@ clear();
 }
 void registerpage(){
     clear();
-    int choice;
+    char choice;
     printBlue("\n--- NILE UNIVERSITY MANAGEMENT SYSTEM ---\n");
     printWhite("1. Student Account\n");
     printWhite("2. Moderator Account\n");
@@ -79,10 +79,10 @@ void registerpage(){
     cin >> choice;
     switch (choice)
     {
-    case 1:
+    case '1':
         studentregisterpage();
         break;
-    case 2:
+    case '2':
         registerpage();
         break;
     default:
