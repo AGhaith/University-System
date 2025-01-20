@@ -2,6 +2,9 @@
 #include <string>
 #include <iostream>
 using namespace std ;
+long long Student_ID_Counter=250000000;
+int Course_ID_Counter = 1;
+
 #define RESET "\033[0m"
 void clear() {
     system("CLS"); 

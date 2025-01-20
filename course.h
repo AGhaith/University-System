@@ -4,8 +4,8 @@
 #include <iostream>
 #include <string>
 #include "Stack.h"
+#include "helper.cpp"
 using namespace std;
-int Course_ID_Counter = 1;
 class Course {
 private:
     int CourseID, CourseCredits;

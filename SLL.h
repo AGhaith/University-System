@@ -1,6 +1,5 @@
 #ifndef SLL_H
 #define SLL_H
-#include "helper.cpp"
 #include <iostream>
 class Student;
 using namespace std ;

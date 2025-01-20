@@ -10,7 +10,6 @@
 using namespace std ;
 
 
-int Student_ID_Counter=250000000;
 
 class Student:public Person{
 
@@ -29,7 +28,7 @@ class Student:public Person{
         Student_ID_Counter++; 
         this->First_name = first_name ; 
         this->Last_name = last_name ; 
-        this->Email = first_name[0]+dot+last_name+suffix+to_string(Student_id%100);
+        this->Email = first_name[0]+dot+last_name+to_string(Student_id%10)+to_string((Student_id/10)%10)+suffix;
         this->Phone = Phone ;
         this->Address = Address ; 
         this->Password = Password ;

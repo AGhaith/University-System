@@ -94,13 +94,13 @@ void studentregisterpage(){
     clear();
     printBlue("\n--- NILE UNIVERSITY MANAGEMENT SYSTEM ---\n");
     string fname,lname,address,phone,password;
-    printWhite("Enter Student First Name: ");
+    printWhite("Enter Your First Name: ");
     cin >> fname;
         printWhite("Enter Your Last Name: ");
     cin >> lname;
     printWhite("Enter Your Phone: ");
     cin >> phone;
-    while(phone.length() < 11 || phone[0] != '0' || phone[1] != '1'){
+    while(phone.length() != 11 || phone[0] != '0' || phone[1] != '1'){
         cout << "e7trm nfsk " << endl;
         printWhite("Enter Your Phone: ");
         cin >> phone;
