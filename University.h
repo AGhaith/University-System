@@ -6,6 +6,7 @@
 #include "Course.h"
 #include "Student.h"
 #include "SLL.h"
+#include"DLL.h"
 #include "Course Registration.h"
 #include "Course Records Management.h"
 #include "Student Records Management.h"
@@ -17,6 +18,7 @@ class university{
 private:
 Student_Records_Management StudentRecords;
 Course_Records_Managment CourseRecords;
+DLL<Course> Course_Enrollment_history ;
 int NumberOfCourses = 0;
 
 public:

@@ -40,6 +40,7 @@ class DLL{
             tail->next = newnode ; 
             tail = newnode ; 
     }
+        cout <<"course added succecfully" << endl ;
     }
     void view(){    
 
