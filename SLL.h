@@ -105,6 +105,7 @@ class SLL{
             curr = curr->next;
         }
         if (curr == NULL){
+            cout << "Couldn't Find Email" << endl;
             return false;
         }else {
             if(curr->Data.Get_Password() == password){

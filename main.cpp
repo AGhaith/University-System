@@ -41,6 +41,7 @@ university nileuniversity;
 Student s1("Ahmed","Ghaith","01021565688","8th District","Password@1");
 Student s2("Omar","Sholkamy","01021565688","8th District","Password@2");
 Student s3("Yousef","Amir","01021565688","8th District","Password@3");
+
 // Addint to the record
 nileuniversity.Add_To_Student_Record(s1);
 nileuniversity.Add_To_Student_Record(s2);

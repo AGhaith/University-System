@@ -17,6 +17,18 @@ public:
         cout << "-------------------------------------------------------------" << endl;
 
     }
+    int counter = 1;
+    void Display(){
+        Displaypreorder(root);
+    }
+    BSTNode* Displaypreorder(BSTNode *&root){ //HLR
+        if (root == NULL){
+            return root;
+        }
+        cout << counter << '.' << root->Content.get_name() << endl;
+        return Displaypreorder(root->left);
+        return Displaypreorder(root->right);
+    }
     BSTNode* insertNode(BSTNode *&root, Course val){
         if (root == NULL){
             root = new BSTNode(val);
@@ -92,6 +104,7 @@ public:
         }
         return false;
     }
+
 };
 
 #endif // COURSE_RECORDS_MANAGEMENT_H

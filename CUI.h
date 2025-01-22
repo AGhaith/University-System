@@ -1,6 +1,7 @@
 #ifndef CUI_H
 #define CUI_H
 #include <chrono>
+#include <conio.h>
 #include <thread> 
 #include <iostream>
 #include "University.h"
@@ -142,6 +143,28 @@ void studentloggedin(Student*&student) {
                 printBlue("\n--- ENROLLED COURSES ---\n");
                 //student->DisplayEnrolledCourses();
                 printWhite("\nPress any key to continue...");
+                getch();
+                clear();
+                printBlue("\n--- ENROLLED COURSES ---\n");
+                        printWhite("1. Register A Course\n");
+                        printWhite("2. Withdraw From A Course\n");
+                        printWhite("3. Back\n");
+                        printWhite("Please select an option: ");
+                        cin >> choice;
+                        if (choice == '3'){ //Back
+                            break;
+                        }
+                        if (choice == '1'){//Register
+                            (this->MyUniversity)->Display_All_Courses();
+                            cin >> choice;
+                            
+                        }
+                        if (choice == '2'){//Withdraw
+
+                        }
+                        
+
+
 
                 break;
 
@@ -150,6 +173,7 @@ void studentloggedin(Student*&student) {
                 printBlue("\n--- TRANSCRIPT ---\n");
                // student->DisplayTranscript(); // Assuming Student class has this method
                 printWhite("\nPress any key to continue...");
+                getch();
 
                 break;
 

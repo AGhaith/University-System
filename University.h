@@ -39,6 +39,9 @@ public:
         CourseRecords.dropCourse(id);
 
     }
+    void Display_All_Courses(){
+        CourseRecords.Display();
+    }
     bool checkstudentdetails(string email,string password,Student *&x){
         return StudentRecords.check(email,password,x);
     }
