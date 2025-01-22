@@ -1,7 +1,9 @@
 #ifndef SLL_H
 #define SLL_H
+#include "Course.h"
 #include <iostream>
 class Student;
+class Course;
 using namespace std ;
 
 template<class T>
@@ -70,6 +72,18 @@ class SLL{
             temp->next = newnode ; 
         }
 
+    }
+    void Display_Courses(){
+         int counter = 1;
+         if (head == NULL) {
+            cout << "No Enrolled Courses" << endl;
+            return;
+        }
+        SLLNode<Course> *curr = head;
+        while (curr != NULL){
+        cout << counter << '.' << curr->Data.get_name() << endl;
+        curr=curr->next;
+        }
     }
     void Display_Student_Records(){
         SLLNode<T> *curr = head ;

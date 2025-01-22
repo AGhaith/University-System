@@ -1,6 +1,7 @@
 #ifndef COURSE_RECORDS_MANAGEMENT_H
 #define COURSE_RECORDS_MANAGEMENT_H
 
+#include <cstddef>
 #include <iostream>
 #include <string>
 #include "Course.h"
@@ -17,18 +18,53 @@ public:
         cout << "-------------------------------------------------------------" << endl;
 
     }
-    int counter = 1;
+ 
     void Display(){
-        Displaypreorder(root);
+        int counter = 1;
+        Displaypreorder(root,counter);
+
     }
-    BSTNode* Displaypreorder(BSTNode *&root){ //HLR
+    void Displaypreorder(BSTNode *&root,int counter){ //HLR
+    
         if (root == NULL){
-            return root;
+            return;
         }
         cout << counter << '.' << root->Content.get_name() << endl;
-        return Displaypreorder(root->left);
-        return Displaypreorder(root->right);
+        counter++;
+        Displaypreorder(root->left,counter);
+        Displaypreorder(root->right,counter);
     }
+    Course FindCourseByNumber(int x) {
+    int counter = 0; 
+    return Findpreorder(root, counter, x);
+}
+
+Course Findpreorder(BSTNode* root, int& counter, int key) { // HLR 
+    if (root == nullptr) {
+        Course emptyCourse("EMPTY", "NULL", 0); 
+        return emptyCourse;
+    }
+
+    counter++; 
+    if (counter == key) {
+        return root->Content;
+    }
+
+    // Traverse the left subtree
+    Course leftResult = Findpreorder(root->left, counter, key);
+    if (leftResult.get_name() != "EMPTY") { 
+        return leftResult; 
+    }
+
+    // Traverse the right subtree
+    Course rightResult = Findpreorder(root->right, counter, key);
+    if (rightResult.get_name() != "EMPTY") {
+        return rightResult; 
+    }
+
+    Course emptyCourse("EMPTY", "NULL", 0);
+    return emptyCourse;
+}
     BSTNode* insertNode(BSTNode *&root, Course val){
         if (root == NULL){
             root = new BSTNode(val);

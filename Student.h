@@ -16,6 +16,8 @@ class Student:public Person{
     private:
 
     int Student_id; 
+    SLL<Course> RegisteredCourses;
+    SLL<Course> Waitlist;
     unordered_map<int,SLL<Course>> FinishedCoursesHashmap;
     string suffix = "@nu.edu.eg";
     string dot = ".";
@@ -36,6 +38,12 @@ class Student:public Person{
     
     int Get_ID(){
         return Student_id ; 
+    }
+    void RegisterCourse(Course Course_To_Register){
+        RegisteredCourses.insert(Course_To_Register);
+    }
+    void Display_Enrolled_Courses(){
+        RegisteredCourses.Display_Courses();
     }
     int hashing(Course mycourse){
         int final = 0;

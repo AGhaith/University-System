@@ -33,19 +33,43 @@
             Drop_Course() -> Remove That Course From University
 */
 #include"CUI.h"
+#include <windows.h>
 using namespace std;
 
 int main(){
 university nileuniversity;
+// Creating Courses 
+
+Course c1("MATH101","NULL",4);
+Course c2("MATH102","NULL",4);
+Course c3("MATH103","NULL",4);
+Course c4("CSCI207","NULL",4);
+Course c5("CSCI112","NULL",4);
+
+// Adding them to the record
+
+nileuniversity.Add_New_Course(c1);
+nileuniversity.Add_New_Course(c2);
+nileuniversity.Add_New_Course(c3);
+nileuniversity.Add_New_Course(c4);
+nileuniversity.Add_New_Course(c5);
+
 // Creating Students 
+
 Student s1("Ahmed","Ghaith","01021565688","8th District","Password@1");
+//A.Ghaith00@nu.edu.eg
+//Password@1
 Student s2("Omar","Sholkamy","01021565688","8th District","Password@2");
 Student s3("Yousef","Amir","01021565688","8th District","Password@3");
 
-// Addint to the record
+// Adding them to the record
+
 nileuniversity.Add_To_Student_Record(s1);
 nileuniversity.Add_To_Student_Record(s2);
 nileuniversity.Add_To_Student_Record(s3);
+
+s1.RegisterCourse(c1);
+s2.RegisterCourse(c2);
 
 CUI commandlineinterface(nileuniversity);
 commandlineinterface.welcome();

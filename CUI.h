@@ -4,6 +4,7 @@
 #include <conio.h>
 #include <thread> 
 #include <iostream>
+#include "Course.h"
 #include "University.h"
 #include "windows.h"
 #include "Student.h"
@@ -141,7 +142,7 @@ void studentloggedin(Student*&student) {
             case '1': // Enrolled Courses
                 clear();
                 printBlue("\n--- ENROLLED COURSES ---\n");
-                //student->DisplayEnrolledCourses();
+                student->Display_Enrolled_Courses();
                 printWhite("\nPress any key to continue...");
                 getch();
                 clear();
@@ -155,11 +156,36 @@ void studentloggedin(Student*&student) {
                             break;
                         }
                         if (choice == '1'){//Register
+                            clear();
+                            printBlue("\n--- AVAILABLE COURSES ---\n");
                             (this->MyUniversity)->Display_All_Courses();
                             cin >> choice;
-                            
+                            int realchoice1 = choice - '0';
+                            if (realchoice1 > (this->MyUniversity)->Get_Number_Of_courses() || realchoice1 < 1){
+                                printRed("Invalid Choice");
+                                Sleep(500);
+                                break;
+                            }else {
+                                int realchoice = choice - '0';
+                                Course Temp = (this->MyUniversity)->FindCourseByNumber(realchoice);
+                                if (Temp.get_name() != "EMPTY"){
+                                (student)->RegisterCourse(Temp);
+                                printRed("Course Registered Successfully");
+                                cout << endl;
+                                Sleep(500);
+                                break;
+                                }else
+                                {
+                                break;    
+                                }
+                                
+                            }
                         }
                         if (choice == '2'){//Withdraw
+                            clear();
+                            printBlue("\n--- ENROLLED COURSES ---\n");
+                            student->Display_Enrolled_Courses();
+                            cin >> choice;
 
                         }
                         

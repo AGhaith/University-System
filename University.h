@@ -17,8 +17,12 @@ class university{
 private:
 Student_Records_Management StudentRecords;
 Course_Records_Managment CourseRecords;
+int NumberOfCourses = 0;
 
 public:
+    int Get_Number_Of_courses(){
+        return NumberOfCourses;
+    }
     void display_Student_Records(){
         StudentRecords.display();
     }
@@ -33,14 +37,19 @@ public:
 
     }
     void Add_New_Course(Course A){
+        NumberOfCourses++;
         CourseRecords.addCourse(A);
     }
     void Drop_Course(int id){
+        NumberOfCourses--;
         CourseRecords.dropCourse(id);
 
     }
     void Display_All_Courses(){
         CourseRecords.Display();
+    }
+    Course FindCourseByNumber(int x){
+        return CourseRecords.FindCourseByNumber(x);
     }
     bool checkstudentdetails(string email,string password,Student *&x){
         return StudentRecords.check(email,password,x);
