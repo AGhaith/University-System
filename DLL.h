@@ -45,7 +45,7 @@ class DLL{
 
         DLLNode<T> *curr = head  ; 
 
-        cout << "enrollment history"
+        cout << "enrollment history" ; 
         while ( curr != NULL){
             curr = curr->next ;
             cout << curr->data << " , " ; 
