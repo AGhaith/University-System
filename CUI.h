@@ -57,12 +57,13 @@ clear();
         printBlue("\n--- NILE UNIVERSITY MANAGEMENT SYSTEM ---\n");
         string Email, Password;
         printWhite("Enter Student Email: ");
-        std::cin >> Email;
+        cin >> Email;
         printWhite("Enter Student Password: ");
-        std::cin >> Password;
-
-        if ((*MyUniversity).checkstudentdetails(Email,Password)) {
+        cin >> Password;
+        Student *x;
+        if ((*MyUniversity).checkstudentdetails(Email,Password,x)) {
             printBlue("\nStudent login successful!\n");
+            studentloggedin(x);
         } else {
             clear();
             printBlue("\nInvalid student credentials.\n");
@@ -123,7 +124,56 @@ void studentregisterpage(){
     cout << "ID : " << newstudent.Get_ID() << endl;
 
 }
+void studentloggedin(Student*&student) {
+    char choice;
+    while (true) {
+        clear();
+        printBlue("\n--- NILE UNIVERSITY MANAGEMENT SYSTEM ---\n");
+        printWhite("1. Enrolled Courses\n");
+        printWhite("2. Transcript\n");
+        printWhite("3. Personal Information\n");
+        printWhite("4. Logout\n");
+        printWhite("Please select an option: ");
+        cin >> choice;
 
+        switch (choice) {
+            case '1': // Enrolled Courses
+                clear();
+                printBlue("\n--- ENROLLED COURSES ---\n");
+                //student->DisplayEnrolledCourses();
+                printWhite("\nPress any key to continue...");
+
+                break;
+
+            case '2': // Transcript
+                clear();
+                printBlue("\n--- TRANSCRIPT ---\n");
+               // student->DisplayTranscript(); // Assuming Student class has this method
+                printWhite("\nPress any key to continue...");
+
+                break;
+
+            case '3': // Personal Information
+                clear();
+                printBlue("\n--- PERSONAL INFORMATION ---\n");
+               // student->DisplayPersonalInfo(); // Assuming Student class has this method
+                break;
+
+            case '4': // Logout
+                clear();
+                printBlue("\nLogging out...\n");
+                Sleep(500); // 34an yban sre3 w kda
+                clear();
+                return; // yrg3 main menu
+
+            default:
+                clear();
+                printRed("Invalid option. Please try again.\n");
+                Sleep(1000);
+                break;
+        }
+    }
+}
 };
 
 #endif

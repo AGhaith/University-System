@@ -89,15 +89,16 @@ class SLL{
             cout << "-------------------------------------------------------------" << endl;
         }
     }
-    bool checkuserinfo(string email,string password){
+    bool checkuserinfo(string email,string password,Student *&x){
     email = lower(email);
     SLLNode<T>*curr = head;
     if (curr == NULL){
         return false;
     }
-    string compare = lower(curr->Data.Get_Email());
+    
 
         while(curr!=NULL){
+        string compare = lower(curr->Data.Get_Email());
             if (compare == email){
                 break;
             }
@@ -107,11 +108,11 @@ class SLL{
             return false;
         }else {
             if(curr->Data.Get_Password() == password){
+            x=&(curr->Data);
             return true;
             }
             return false;
         }
-
     
     }
     void deleteStudent(int id){

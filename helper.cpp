@@ -20,6 +20,10 @@ void printWhite(string text) {
     const string WHITE = "\033[37m";
     cout << WHITE << text << RESET;
 }
+void printRed(string text) {
+    const string RED = "\033[1;31m";
+    cout << RED << text << RESET;
+}
 string lower(const string str) {
     string result = str;
     for (char &c : result) {

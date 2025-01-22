@@ -24,8 +24,8 @@ class Student_Records_Management{
     void display(){
         SLL_Students.Display_Student_Records();
     }
-    bool check(string email,string password){
-        return SLL_Students.checkuserinfo(email,password);
+    bool check(string email,string password,Student *&x){
+        return SLL_Students.checkuserinfo(email,password,x);
     }
 };
 

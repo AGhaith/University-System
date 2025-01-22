@@ -37,16 +37,18 @@ using namespace std;
 
 int main(){
 university nileuniversity;
+// Creating Students 
+Student s1("Ahmed","Ghaith","01021565688","8th District","Password@1");
+Student s2("Omar","Sholkamy","01021565688","8th District","Password@2");
+Student s3("Yousef","Amir","01021565688","8th District","Password@3");
+// Addint to the record
+nileuniversity.Add_To_Student_Record(s1);
+nileuniversity.Add_To_Student_Record(s2);
+nileuniversity.Add_To_Student_Record(s3);
+
 CUI commandlineinterface(nileuniversity);
 commandlineinterface.welcome();
-// // Creating Students (string name , string Email , string Phone ,string Address , string Password)
-// Student s1("Ahmed Ghaith","A.Wesam2300@nu.edu.eg","01021565688","8th District","Password@1");
-// Student s2("Omar Sholkamy","A.Wesam2300@nu.edu.eg","01021565688","8th District","Password@2");
-// Student s3("Yousef Amir","A.Wesam2300@nu.edu.eg","01021565688","8th District","Password@3");
-// // Addint to the record
-// nileuniversity.Add_To_Student_Record(s1);
-// nileuniversity.Add_To_Student_Record(s2);
-// nileuniversity.Add_To_Student_Record(s3);
+
 // // Printing the record
 // nileuniversity.display_Student_Records();
 // // Deleting From the record
