@@ -130,6 +130,9 @@ class SLL{
         }
     
     }
+    void Delete_Course(Course x){
+
+    }
     void deleteStudent(int id){
     if (head == NULL){
         cout << "There are no students" << endl;
@@ -150,6 +153,18 @@ class SLL{
     SLLNode<T> *temp = curr->next;
     curr->next = temp->next;
     delete temp;
+    }
+    Course FindCourseByNumber(int x){
+        int counter = 1;
+        Course emptyCourse("EMPTY", "NULL", 0); 
+        if (head == NULL)return emptyCourse;
+        SLLNode<Course> *curr = head;
+        while(curr!=NULL && counter != x){
+            curr=curr->next;
+            counter++;
+        }
+        if (curr==NULL)return emptyCourse;
+        return curr->Data;
     }
 };
 

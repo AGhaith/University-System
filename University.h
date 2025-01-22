@@ -18,7 +18,7 @@ class university{
 private:
 Student_Records_Management StudentRecords;
 Course_Records_Managment CourseRecords;
-DLL<Course> Course_Enrollment_history ;
+//DLL<Course> Course_Enrollment_history ;
 int NumberOfCourses = 0;
 
 public:
@@ -56,12 +56,12 @@ public:
     bool checkstudentdetails(string email,string password,Student *&x){
         return StudentRecords.check(email,password,x);
     }
-    void add_course_enrollment_history(Course course_to_enroll){
-        Course_Enrollment_history.add(course_to_enroll) ; 
-    }
-    void view_enrollment_history(){
-        Course_Enrollment_history.view() ; 
-    }
+    // void add_course_enrollment_history(Course course_to_enroll){
+    //     Course_Enrollment_history.add(course_to_enroll) ; 
+    // }
+    // void view_enrollment_history(){
+    //     Course_Enrollment_history.view() ; 
+    // }
     /*
     bool checkmoderatordetails(string email,string password){
         return ModeratorRecords.check(email,password);

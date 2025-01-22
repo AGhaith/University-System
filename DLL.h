@@ -2,6 +2,7 @@
 #define DLL_H
 
 #include <iostream>
+#include "course.h"
 using namespace std ;
 
 template<class T>
@@ -45,11 +46,13 @@ class DLL{
     void view(){    
 
         DLLNode<T> *curr = head  ; 
-
-        cout << "enrollment history" ; 
+        if (curr == NULL){
+            return;
+        }
+        cout << "Enrollment history" ; 
         while ( curr != NULL){
-            curr = curr->next ;
             cout << curr->data << " , " ; 
+            curr = curr->next ;
         }
         cout << endl ; 
     }

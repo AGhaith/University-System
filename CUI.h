@@ -186,13 +186,26 @@ void studentloggedin(Student*&student) {
                             printBlue("\n--- ENROLLED COURSES ---\n");
                             student->Display_Enrolled_Courses();
                             cin >> choice;
-
-                        }
-                        
-
-
-
-                break;
+                            int realchoice1 = choice - '0';
+                            if (realchoice1 > (student)->Get_Number_Of_Enrolled_Courses() || realchoice1 < 1){
+                                printRed("Invalid Choice");
+                                Sleep(500);
+                                break;
+                            }else {
+                                int realchoice = choice - '0';
+                                Course Temp = student->FindCourseByNumber(realchoice);
+                                if (Temp.get_name() != "EMPTY"){
+                                (student)->WithdrawCourse(Temp);
+                                printRed("Course Withdrawn Successfully");
+                                cout << endl;
+                                Sleep(500);
+                                break;
+                                }else
+                                {
+                                break;    
+                                }
+                                }
+                            }
 
             case '2': // Transcript
                 clear();
@@ -224,6 +237,7 @@ void studentloggedin(Student*&student) {
         }
     }
 }
+
 };
 
 #endif

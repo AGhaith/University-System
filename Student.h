@@ -21,6 +21,7 @@ class Student:public Person{
     unordered_map<int,SLL<Course>> FinishedCoursesHashmap;
     string suffix = "@nu.edu.eg";
     string dot = ".";
+    int NumberOfEnrolledCourses=0;
     public:
     Student(){
 
@@ -39,8 +40,19 @@ class Student:public Person{
     int Get_ID(){
         return Student_id ; 
     }
+    int Get_Number_Of_Enrolled_Courses(){
+        return NumberOfEnrolledCourses;
+    }
+    Course FindCourseByNumber(int Course_To_Find){
+        return RegisteredCourses.FindCourseByNumber(Course_To_Find);
+    }
     void RegisterCourse(Course Course_To_Register){
         RegisteredCourses.insert(Course_To_Register);
+        NumberOfEnrolledCourses++;
+    }
+    void WithdrawCourse(Course Course_To_Withdraw){
+        RegisteredCourses.Delete_Course(Course_To_Withdraw);
+        NumberOfEnrolledCourses--;
     }
     void Display_Enrolled_Courses(){
         RegisteredCourses.Display_Courses();
