@@ -45,30 +45,25 @@ class Stack{
     }
 
     T Pop(){
-        
-        // if (is_empty()){
-
-        //     Course emptyCourse("EMPTY", "NULL", 0);
-        //     cout << "Stack is empty" << endl ; 
-        //     return emptyCourse ; 
-        // }
-
-        //else{
+        Course emptyCourse("EMPTY", "NULL", 0); 
+        if (is_empty()){
+            return emptyCourse ; 
+        }
+        else{
 
             StackNode<T> *temp = top ; 
             T course = top->Data ; 
             top = top->next ; 
             delete temp  ; 
             return course ;
-
-//        }
+       }
     }
 
     T Peek(){
 
         if (is_empty()){
 
-            cout << "Stack is empty" << endl ;
+            return -1 ; 
 
         }
         
@@ -93,34 +88,9 @@ class Stack{
 
         }
     }
-
-    T get_top(){
-        if (top==NULL){
-            cout<< "stack is empty" << endl ;
-            return top->Data ;
-        }
-        else{
-            return top->Data ;
-        } 
-
-    }
-    Stack<T> get_copy(){
-
-        Stack<T> stack1 ;
-        Stack<T> org_stack2 ; 
-
-        while (!(*this).is_empty()){
-            T x = (*this).Pop() ; 
-            stack1.Push(x) ; 
-            org_stack2.Push(x) ;
-        }
-        while (!org_stack2.is_empty() ){
-            T x = org_stack2.Pop() ;
-            stack1.Push(x) ; 
-            (*this).Push(x) ; 
-        }
-        return stack1 ; 
-        
+    
+    Stack<T> get_copy()const{
+        return *this ; 
     }
     
 

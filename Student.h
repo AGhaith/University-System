@@ -54,26 +54,21 @@ class Student:public Person{
 
         while (!copy_prerq.is_empty()){
 
-            Course curr_course = copy_prerq.get_top();
+            Course curr_course = copy_prerq.Pop();
 
-            if ((this)->searchWithHashing(x)){
-                copy_prerq.Pop();
+            if ((this)->searchWithHashing(curr_course)){
+                cout << "student already registerd" << endl ; 
+                return false ; 
             }
-            else{
-                cout <<"///" << endl ; 
-                return false;
-            }
-        }
-
-        if(!copy_prerq.is_empty()){
-            return false ; // lesa feha courses makhlshasah
+            
         }
         return true;
     }
 
 
     bool RegisterCourse(Course Course_To_Register){
-        // check in hash
+        // SLL
+        
         if (RegisteredCourses.Find(Course_To_Register))
         {
             Course_To_Register.showrequiredcourses();
@@ -83,12 +78,11 @@ class Student:public Person{
         }
         //check in stack of prerquistes
 
-        if (!(this->check_Prerequisites(Course_To_Register))){ 
-
+        if ((this->check_Prerequisites(Course_To_Register))){ 
                 printRed("Student didn't finish all required courses");
                 cout << endl; 
                 return false ;
-            } 
+            }
         
         RegisteredCourses.insert(Course_To_Register);
         NumberOfEnrolledCourses++;

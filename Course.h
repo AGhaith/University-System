@@ -51,9 +51,9 @@ public:
     void add_to_Prerequisites( Course must_be_finished_course){
         Prerequisites.Push(must_be_finished_course);
     }
-Stack<Course> getcopy(){
-    return Prerequisites;
-}
+    Stack<Course> getcopy()const{
+        return Prerequisites.get_copy();
+    }
 
 };
 
