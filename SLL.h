@@ -82,6 +82,7 @@ class SLL{
         SLLNode<Course> *curr = head;
         while (curr != NULL){
         cout << counter << '.' << curr->Data.get_name() << endl;
+        counter++;
         curr=curr->next;
         }
     }
@@ -130,8 +131,29 @@ class SLL{
         }
     
     }
-    void Delete_Course(Course x){
+    bool Delete_Course(Course x){
 
+         if (head == NULL) {
+            cout << "No Enrolled Courses" << endl;
+            return false;
+        }
+        SLLNode<Course> *curr = head;
+        SLLNode<Course> *temp ;
+        
+        if (curr->Data == x){
+            head=curr->next;
+            delete curr;
+            return true;
+        }
+        while(curr->next != NULL && !(curr->next->Data == x)){
+            curr = curr->next;
+        }
+        if (curr == NULL){return false;}else {
+            temp = curr->next;
+            curr->next = temp->next;
+            delete temp;
+            return true;
+        }
     }
     void deleteStudent(int id){
     if (head == NULL){

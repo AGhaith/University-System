@@ -50,9 +50,14 @@ class Student:public Person{
         RegisteredCourses.insert(Course_To_Register);
         NumberOfEnrolledCourses++;
     }
-    void WithdrawCourse(Course Course_To_Withdraw){
-        RegisteredCourses.Delete_Course(Course_To_Withdraw);
-        NumberOfEnrolledCourses--;
+    bool WithdrawCourse(Course Course_To_Withdraw){
+        bool temp = RegisteredCourses.Delete_Course(Course_To_Withdraw);
+        if (temp){
+            NumberOfEnrolledCourses--;
+            return temp;
+        }
+        else return temp;
+        
     }
     void Display_Enrolled_Courses(){
         RegisteredCourses.Display_Courses();

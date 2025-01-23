@@ -195,14 +195,17 @@ void studentloggedin(Student*&student) {
                                 int realchoice = choice - '0';
                                 Course Temp = student->FindCourseByNumber(realchoice);
                                 if (Temp.get_name() != "EMPTY"){
-                                (student)->WithdrawCourse(Temp);
-                                printRed("Course Withdrawn Successfully");
-                                cout << endl;
-                                Sleep(500);
-                                break;
-                                }else
-                                {
-                                break;    
+                                    if ((student)->WithdrawCourse(Temp)){
+                                    printRed("Course Withdrawn Successfully");
+                                    cout << endl;
+                                    Sleep(500);
+                                    break;
+                                    }
+                                }else{
+                                    printRed("Couldn't Withdraw Course");
+                                    cout << endl;
+                                    Sleep(500);
+                                    break;   
                                 }
                                 }
                             }
