@@ -169,11 +169,17 @@ void studentloggedin(Student*&student) {
                                 int realchoice = choice - '0';
                                 Course Temp = (this->MyUniversity)->FindCourseByNumber(realchoice);
                                 if (Temp.get_name() != "EMPTY"){
-                                (student)->RegisterCourse(Temp);
-                                printRed("Course Registered Successfully");
-                                cout << endl;
-                                Sleep(500);
-                                break;
+                                    if((student)->RegisterCourse(Temp)){
+                                        printRed("Course Registered Successfully");
+                                        cout << endl;
+                                        Sleep(500);
+                                        break;
+                                    }else {
+                                        cout << endl;
+                                        Sleep(500);
+                                        break;
+                                    }
+                                
                                 }else
                                 {
                                 break;    

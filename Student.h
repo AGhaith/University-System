@@ -46,19 +46,48 @@ class Student:public Person{
     Course FindCourseByNumber(int Course_To_Find){
         return RegisteredCourses.FindCourseByNumber(Course_To_Find);
     }
+
+
+    bool check_Prerequisites(Course x ){
+        
+        Stack<Course> copy_prerq = x.getcopy() ; 
+
+        while (!copy_prerq.is_empty()){
+
+            Course curr_course = copy_prerq.get_top();
+
+            if ((this)->searchWithHashing(x)){
+                copy_prerq.Pop();
+            }
+            else{
+                cout <<"///" << endl ; 
+                return false;
+            }
+        }
+
+        if(!copy_prerq.is_empty()){
+            return false ; // lesa feha courses makhlshasah
+        }
+        return true;
+    }
+
+
     bool RegisterCourse(Course Course_To_Register){
         // check in hash
-        if (searchWithHashing(Course_To_Register) )
+        if (RegisteredCourses.Find(Course_To_Register))
         {
-            cout << "student already registerd" << endl ; 
+            Course_To_Register.showrequiredcourses();
+            printRed("student already registered");
+            cout << endl; 
             return false ;
         }
         //check in stack of prerquistes
-        if (Course_To_Register.check_Prerequisites(*this)){ // fe haga 8er *this ???
 
-                cout << "student didnt finish all requierd courses"<<endl ; 
+        if (!(this->check_Prerequisites(Course_To_Register))){ 
 
-                return false ; 
+                printRed("Student didn't finish all required courses");
+                cout << endl; 
+                return false ;
             } 
         
         RegisteredCourses.insert(Course_To_Register);

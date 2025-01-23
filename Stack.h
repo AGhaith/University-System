@@ -36,26 +36,24 @@ class Stack{
         if (is_empty()){
 
             top = newnode ;
-
+            return;
         }
         else {
-
             newnode->next = top ;  
             top = newnode ; 
-
         }
     }
 
     T Pop(){
         
-        if (is_empty()){
+        // if (is_empty()){
 
-            Course emptyCourse("EMPTY", "NULL", 0);
-            cout << "Stack is empty" << endl ; 
-            return emptyCourse ; 
-        }
+        //     Course emptyCourse("EMPTY", "NULL", 0);
+        //     cout << "Stack is empty" << endl ; 
+        //     return emptyCourse ; 
+        // }
 
-        else{
+        //else{
 
             StackNode<T> *temp = top ; 
             T course = top->Data ; 
@@ -63,7 +61,7 @@ class Stack{
             delete temp  ; 
             return course ;
 
-        }
+//        }
     }
 
     T Peek(){
@@ -99,7 +97,7 @@ class Stack{
     T get_top(){
         if (top==NULL){
             cout<< "stack is empty" << endl ;
-            throw runtime_error("Stack is empty") ; 
+            return top->Data ;
         }
         else{
             return top->Data ;

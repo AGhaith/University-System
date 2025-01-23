@@ -38,7 +38,12 @@ public:
     int get_credits() {
         return CourseCredits;
     }
-   
+    void showrequiredcourses(){
+        Stack<Course> temp = Prerequisites;
+        while (!temp.is_empty()){
+            cout << temp.Pop().get_name() << endl;
+        }
+    }
     bool operator==(Course other) const {
         return this->CourseID == other.CourseID ;
     }
@@ -46,29 +51,10 @@ public:
     void add_to_Prerequisites( Course must_be_finished_course){
         Prerequisites.Push(must_be_finished_course);
     }
+Stack<Course> getcopy(){
+    return Prerequisites;
+}
 
-    bool check_Prerequisites(Student student ){
-        
-        Stack copy_prerq = Prerequisites.get_copy() ; 
-
-        while (!copy_prerq.is_empty()){
-
-            Course curr_course = copy_prerq.get_top();
-
-            if (student.searchWithHashing(curr_course)){
-                copy_prerq.Pop();
-            }
-            else{
-                cout <<"///" << endl ; 
-                return false;
-            }
-        }
-
-        if(!copy_prerq.is_empty()){
-            return false ; // lesa feha courses makhlshasah
-        }
-        return true;
-    }
 };
 
 
