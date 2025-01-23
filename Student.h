@@ -4,7 +4,7 @@
 #include <iostream>
 #include <unordered_map>
 #include <string>
-#include "Course.h" // Include full definition of Course
+#include "course.h" // Include full definition of Course
 #include "Person.h"
 #include "SLL.h"    // Include full definition of SLL
 using namespace std ;
@@ -46,9 +46,26 @@ class Student:public Person{
     Course FindCourseByNumber(int Course_To_Find){
         return RegisteredCourses.FindCourseByNumber(Course_To_Find);
     }
-    void RegisterCourse(Course Course_To_Register){
+    bool RegisterCourse(Course Course_To_Register){
+        // check in hash
+        if (searchWithHashing(Course_To_Register) )
+        {
+            cout << "student already registerd" << endl ; 
+            return false ;
+        }
+        //check in stack of prerquistes
+        if (Course_To_Register.check_Prerequisites(*this)){ // fe haga 8er *this ???
+
+                cout << "student didnt finish all requierd courses"<<endl ; 
+
+                return false ; 
+            } 
+        
         RegisteredCourses.insert(Course_To_Register);
         NumberOfEnrolledCourses++;
+        cout <<"student succefully enrolled " << endl ;
+        return true ;
+        
     }
     bool WithdrawCourse(Course Course_To_Withdraw){
         bool temp = RegisteredCourses.Delete_Course(Course_To_Withdraw);

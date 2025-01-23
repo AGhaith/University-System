@@ -3,6 +3,7 @@
 
 #include <iostream>
 using namespace std ; 
+class Course ; 
 
 template<class T>
 class StackNode{
@@ -45,23 +46,24 @@ class Stack{
         }
     }
 
-    void Pop(){
+    T Pop(){
         
         if (is_empty()){
 
+            Course emptyCourse("EMPTY", "NULL", 0);
             cout << "Stack is empty" << endl ; 
-
+            return emptyCourse ; 
         }
 
         else{
 
             StackNode<T> *temp = top ; 
+            T course = top->Data ; 
             top = top->next ; 
-            //top removed han3ml eh baadeha ? ,,return ?
             delete temp  ; 
+            return course ;
 
         }
-
     }
 
     T Peek(){
@@ -93,6 +95,36 @@ class Stack{
 
         }
     }
+
+    T get_top(){
+        if (top==NULL){
+            cout<< "stack is empty" << endl ;
+            throw runtime_error("Stack is empty") ; 
+        }
+        else{
+            return top->Data ;
+        } 
+
+    }
+    Stack<T> get_copy(){
+
+        Stack<T> stack1 ;
+        Stack<T> org_stack2 ; 
+
+        while (!(*this).is_empty()){
+            T x = (*this).Pop() ; 
+            stack1.Push(x) ; 
+            org_stack2.Push(x) ;
+        }
+        while (!org_stack2.is_empty() ){
+            T x = org_stack2.Pop() ;
+            stack1.Push(x) ; 
+            (*this).Push(x) ; 
+        }
+        return stack1 ; 
+        
+    }
+    
 
     ~Stack(){
 
