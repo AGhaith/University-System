@@ -69,8 +69,8 @@ Student s3("Yousef","Amir","01021565688","8th District","Password@3");
 nileuniversity.Add_To_Student_Record(s1);
 nileuniversity.Add_To_Student_Record(s2);
 nileuniversity.Add_To_Student_Record(s3);
-c2.add_to_Prerequisites(c1);
-c3.add_to_Prerequisites(c2);
+c2.Add_To_Prerequisites(c1);
+c3.Add_To_Prerequisites(c2);
 
 
 CUI commandlineinterface(nileuniversity);

@@ -4,6 +4,7 @@
 #include <iostream>
 #include <unordered_map>
 #include <string>
+#include "Course.h"
 #include "course.h" // Include full definition of Course
 #include "Person.h"
 #include "SLL.h"    // Include full definition of SLL
@@ -48,24 +49,26 @@ class Student:public Person{
     }
 
 
-    bool check_Prerequisites(Course x ){
+    bool check_Prerequisites(Course x){
         
-        Stack<Course> copy_prerq = x.getcopy() ; 
-
-        while (!copy_prerq.is_empty()){
-
-            Course curr_course = copy_prerq.get_top();
-
-            if ((this)->searchWithHashing(x)){
-                copy_prerq.Pop();
-            }
-            else{
-                cout <<"///" << endl ; 
-                return false;
-            }
+        Stack<Course> Prerequisites = x.Get_Copy_Of_Prerequisite_Stack();
+        if (Prerequisites.is_empty()) {
+            return true;
         }
+        while (!Prerequisites.is_empty()) {
+                Course curr_course = Prerequisites.Peek(); 
+                cout << curr_course.Get_Name() << endl;
+                Sleep(1000); 
+                if ((this)->searchWithHashing(curr_course)) {
+                    Prerequisites.Pop(); 
+                } else {
+                    cout << "prerequisite not found " << endl; 
+                    Sleep(1000); 
+                    return false; 
+                }
+            }
 
-        if(!copy_prerq.is_empty()){
+        if(!Prerequisites.is_empty()){
             return false ; // lesa feha courses makhlshasah
         }
         return true;
@@ -76,20 +79,19 @@ class Student:public Person{
         // check in hash
         if (RegisteredCourses.Find(Course_To_Register))
         {
-            Course_To_Register.showrequiredcourses();
-            printRed("student already registered");
+            Course_To_Register.List_Prerequisites();
+            printRed("You Are Already Registered");
             cout << endl; 
             return false ;
         }
         //check in stack of prerquistes
 
         if (!(this->check_Prerequisites(Course_To_Register))){ 
-
-                printRed("Student didn't finish all required courses");
-                cout << endl; 
-                return false ;
-            } 
-        
+            printRed("Student didn't finish all required courses");
+            cout << endl; 
+            return false ;
+        } 
+        //If student meets all requiremnents
         RegisteredCourses.insert(Course_To_Register);
         NumberOfEnrolledCourses++;
         cout <<"student succefully enrolled " << endl ;
@@ -110,13 +112,13 @@ class Student:public Person{
     }
     int hashing(Course mycourse){
         int final = 0;
-        string a = mycourse.get_name();
+        string a = mycourse.Get_Name();
         for(int i = 0 ; i < a.length() ; i++){
             int temp = a[i];
             if (i-1==a.length()){
                 final = final + temp*2;
             }else {
-                final+=a[i];
+                final+=temp;
             }
         }
         return final;

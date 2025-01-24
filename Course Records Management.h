@@ -18,7 +18,7 @@ public:
         cout << "-------------------------------------------------------------" << endl;
 
     }
- 
+
     void Display(){
         int counter = 1;
         Displaypreorder(root,counter);
@@ -29,7 +29,7 @@ public:
         if (root == NULL){
             return;
         }
-        cout << counter << '.' << root->Content.get_name() << endl;
+        cout << counter << '.' << root->Content.Get_Name() << endl;
         counter++;
         Displaypreorder(root->left,counter);
         Displaypreorder(root->right,counter);
@@ -37,40 +37,40 @@ public:
     Course FindCourseByNumber(int x) {
     int counter = 0; 
     return Findpreorder(root, counter, x);
-}
+    }
 
-Course Findpreorder(BSTNode* root, int& counter, int key) { // HLR 
-    if (root == nullptr) {
-        Course emptyCourse("EMPTY", "NULL", 0); 
+    Course Findpreorder(BSTNode* root, int& counter, int key) { // HLR 
+        if (root == nullptr) {
+            Course emptyCourse("EMPTY", "NULL", 0); 
+            return emptyCourse;
+        }
+
+        counter++; 
+        if (counter == key) {
+            return root->Content;
+        }
+
+        // Traverse the left subtree
+        Course leftResult = Findpreorder(root->left, counter, key);
+        if (leftResult.Get_Name() != "EMPTY") { 
+            return leftResult; 
+        }
+
+        // Traverse the right subtree
+        Course rightResult = Findpreorder(root->right, counter, key);
+        if (rightResult.Get_Name() != "EMPTY") {
+            return rightResult; 
+        }
+
+        Course emptyCourse("EMPTY", "NULL", 0);
         return emptyCourse;
     }
-
-    counter++; 
-    if (counter == key) {
-        return root->Content;
-    }
-
-    // Traverse the left subtree
-    Course leftResult = Findpreorder(root->left, counter, key);
-    if (leftResult.get_name() != "EMPTY") { 
-        return leftResult; 
-    }
-
-    // Traverse the right subtree
-    Course rightResult = Findpreorder(root->right, counter, key);
-    if (rightResult.get_name() != "EMPTY") {
-        return rightResult; 
-    }
-
-    Course emptyCourse("EMPTY", "NULL", 0);
-    return emptyCourse;
-}
     BSTNode* insertNode(BSTNode *&root, Course val){
         if (root == NULL){
             root = new BSTNode(val);
             return root;
         }
-        if (val.get_ID() > root->Content.get_ID()){
+        if (val.Get_ID() > root->Content.Get_ID()){
             root->right = insertNode(root->right,val);
         }
         else {
@@ -99,13 +99,13 @@ Course Findpreorder(BSTNode* root, int& counter, int key) { // HLR
         if (root == NULL){
             return root;
         }
-        if (root->Content.get_ID() > x){
+        if (root->Content.Get_ID() > x){
             root->left = remove(root->left,x);
         }
-        if (root->Content.get_ID() < x){
+        if (root->Content.Get_ID() < x){
             root->right = remove(root->right,x);
         } 
-        if (root->Content.get_ID() == x){
+        if (root->Content.Get_ID() == x){
             if (root->left == NULL && root->right == NULL){
                 return NULL;
             }
@@ -116,7 +116,7 @@ Course Findpreorder(BSTNode* root, int& counter, int key) { // HLR
                 return root->left;
             }
             Course n = minValue(root);
-            root->right = remove(root->right,n.get_ID());
+            root->right = remove(root->right,n.Get_ID());
             root->Content = n;
         }
         return root;
@@ -127,15 +127,15 @@ Course Findpreorder(BSTNode* root, int& counter, int key) { // HLR
             cout << "Object Doesn't Exist" << endl;
             return false;
         }
-        if (root->Content.get_ID() == x){
+        if (root->Content.Get_ID() == x){
             cout << "Object Found" << endl;
             cout << "Deleting..." << endl;
             return true;
         }
-        if (root->Content.get_ID() > x){
+        if (root->Content.Get_ID() > x){
             return search(root->left,x);
         }
-        if (root->Content.get_ID() < x){
+        if (root->Content.Get_ID() < x){
             return search(root->right,x);
         }
         return false;

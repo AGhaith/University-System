@@ -24,7 +24,7 @@ printBlue("*********************************************\n");
     printWhite("                   WELCOME\n");
     printWhite("      NILE UNIVERSITY MANAGEMENT SYSTEM\n");
     printBlue("*********************************************\n");
-    Sleep(2500);
+    Sleep(1000);
     clear();
     First_Page();
 }
@@ -163,28 +163,25 @@ void studentloggedin(Student*&student) {
                             int realchoice1 = choice - '0';
                             if (realchoice1 > (this->MyUniversity)->Get_Number_Of_courses() || realchoice1 < 1){
                                 printRed("Invalid Choice");
-                                Sleep(500);
+                                Sleep(1000);
                                 break;
                             }else {
                                 int realchoice = choice - '0';
                                 Course Temp = (this->MyUniversity)->FindCourseByNumber(realchoice);
-                                if (Temp.get_name() != "EMPTY"){
+                                cout << Temp.Get_Name() << endl;
+                                Sleep(1000);
+                                if (Temp.Get_Name() != "EMPTY"){
                                     if((student)->RegisterCourse(Temp)){
                                         printRed("Course Registered Successfully");
-                                        cout << endl;
-                                        Sleep(500);
-                                        break;
+                                        Sleep(1000);
+                                        
                                     }else {
-                                        cout << endl;
-                                        Sleep(500);
-                                        break;
+                                        printRed("Unable To Register Course");
+                                        Sleep(1000);
+                                        
                                     }
                                 
-                                }else
-                                {
-                                break;    
-                                }
-                                
+                                }break;
                             }
                         }
                         if (choice == '2'){//Withdraw
@@ -195,26 +192,26 @@ void studentloggedin(Student*&student) {
                             int realchoice1 = choice - '0';
                             if (realchoice1 > (student)->Get_Number_Of_Enrolled_Courses() || realchoice1 < 1){
                                 printRed("Invalid Choice");
-                                Sleep(500);
+                                Sleep(1000);
                                 break;
                             }else {
                                 int realchoice = choice - '0';
                                 Course Temp = student->FindCourseByNumber(realchoice);
-                                if (Temp.get_name() != "EMPTY"){
+                                if (Temp.Get_Name() != "EMPTY"){
                                     if ((student)->WithdrawCourse(Temp)){
                                     printRed("Course Withdrawn Successfully");
                                     cout << endl;
-                                    Sleep(500);
+                                    Sleep(1000);
                                     break;
                                     }
                                 }else{
                                     printRed("Couldn't Withdraw Course");
                                     cout << endl;
-                                    Sleep(500);
+                                    Sleep(1000);
                                     break;   
+                                    }
                                 }
-                                }
-                            }
+                            }else {printRed("Invalid Choice");Sleep(1000); break;}
 
             case '2': // Transcript
                 clear();
@@ -234,7 +231,7 @@ void studentloggedin(Student*&student) {
             case '4': // Logout
                 clear();
                 printBlue("\nLogging out...\n");
-                Sleep(500); // 34an yban sre3 w kda
+                Sleep(1000); // 34an yban sre3 w kda
                 clear();
                 return; // yrg3 main menu
 

@@ -74,14 +74,14 @@ class SLL{
 
     }
     void Display_Courses(){
-         int counter = 1;
-         if (head == NULL) {
+        int counter = 1;
+        if (head == NULL) {
             cout << "No Enrolled Courses" << endl;
             return;
         }
         SLLNode<Course> *curr = head;
         while (curr != NULL){
-        cout << counter << '.' << curr->Data.get_name() << endl;
+        cout << counter << '.' << curr->Data.Get_Name() << endl;
         counter++;
         curr=curr->next;
         }
@@ -133,7 +133,7 @@ class SLL{
     }
     bool Delete_Course(Course x){
 
-         if (head == NULL) {
+        if (head == NULL) {
             cout << "No Enrolled Courses" << endl;
             return false;
         }
