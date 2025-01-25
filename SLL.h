@@ -134,11 +134,11 @@ class SLL{
         else{
 
             while (curr != NULL){
-                cout << "-------------------------------------------------------------" << endl;
-                cout << curr->Data.Get_ID() << "  ||  " << curr->Data.Get_First_Name() << " " << curr->Data.Get_Last_Name() << "  ||  " << curr->Data.Get_Email() << "  ||  " << curr->Data.Get_Phone() << "  ||  " << curr->Data.Get_Address() << curr->Data.Get_Password() << endl ;
+                cout << "--------------------------------------------------------------------------------------------" << endl;
+                cout << curr->Dataaddress->Get_ID() << "  ||  " << curr->Dataaddress->Get_First_Name() << " " << curr->Dataaddress->Get_Last_Name() << "  ||  " << curr->Dataaddress->Get_Email() << "  ||  " << curr->Dataaddress->Get_Phone() << "  ||  " << curr->Dataaddress->Get_Address() <<  "  ||  " << curr->Dataaddress->Get_Password() << endl ;
                 curr=curr->next;
             }
-            cout << "-------------------------------------------------------------" << endl;
+            cout << "--------------------------------------------------------------------------------------------" << endl;
         }
     }
     bool checkuserinfo(string email,string password,Student *&x){

@@ -29,7 +29,7 @@ string lower(const string str) {
     for (char &c : result) {
         c = tolower(c);
     }
-     return result;
+    return result;
 }
 
 

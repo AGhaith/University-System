@@ -29,9 +29,8 @@ printBlue("*********************************************\n");
 }
 void First_Page(){
 
- char choice;
+char choice;
     while (true) {
-
         printBlue("\n--- NILE UNIVERSITY MANAGEMENT SYSTEM ---\n");
         printWhite("1. Login\n");
         printWhite("2. Register\n");
@@ -56,28 +55,85 @@ void First_Page(){
 void loginpage(){
 clear();
         printBlue("\n--- NILE UNIVERSITY MANAGEMENT SYSTEM ---\n");
-        string Email, Password;
+        char choice;
+        printWhite("1. Student\n");
+        printWhite("2. Moderator\n");
+        printWhite("3. Back\n");
+        printWhite("Please select an option: ");
+
+        cin >> choice;
+        switch (choice) {
+    case '1': {
+        string Email, Password; // Variables are now scoped to this block
         printWhite("Enter Student Email: ");
         cin >> Email;
         printWhite("Enter Student Password: ");
         cin >> Password;
-        Student *x;
-        if (MyUniversity->checkstudentdetails(Email,Password,x)) {
-            printBlue("\nStudent login successful!\n");
-            studentloggedin(x);
+
+        Student *loggedInStudent = nullptr;
+        if (MyUniversity->checkstudentdetails(Email, Password, loggedInStudent)) {
+            if (loggedInStudent) { // Ensure the pointer is valid
+                printBlue("\nStudent login successful!\n");
+                studentloggedin(loggedInStudent);
+            }
         } else {
             clear();
             printBlue("\nInvalid student credentials.\n");
         }
-    
+        break;
+    }
+    case '2': {
+        moderatorpage();
+        break;
+    }
+    default: {
+        printBlue("\nInvalid choice. Please try again.\n");
+        break;
+    }
+}
+}
+void moderatorpage(){
+    while (true){
+        clear();
+        printRed("\n--- NILE UNIVERSITY MANAGEMENT SYSTEM ---\n");
+        char choice;
+        printRed("1. Show All Students\n");
+        printRed("2. Add new Course\n");
+        printRed("3. Remove a Course\n");
+        printRed("4. Back\n");
+        printRed("Please select an option: ");
+        cin >> choice;
+        switch (choice) {
+            case '1':{
+                clear();
+                printRed("\n--- NILE UNIVERSITY MANAGEMENT SYSTEM ---\n");
+                MyUniversity->display_Student_Records();
+                printWhite("\nPress any key to continue...");
+                getch();
+                clear();
+                break;
+            }
+            case '2':{
+                clear();
+                break;
+            }
+            case '3':{
+                clear();
+                break;
+            }
+            default:{
+                clear();
+                return;
+            }
+        }
+    }
 }
 void registerpage(){
     clear();
     char choice;
     printBlue("\n--- NILE UNIVERSITY MANAGEMENT SYSTEM ---\n");
     printWhite("1. Student Account\n");
-    printWhite("2. Moderator Account(Future Work)\n");
-    printWhite("3. Back\n");
+    printWhite("2. Back\n");
     printWhite("Please select an option: ");
     cin >> choice;
     switch (choice)
@@ -85,15 +141,13 @@ void registerpage(){
     case '1':
         studentregisterpage();
         break;
-    case '2':
-        registerpage();
-        break;
     default:
         clear();
         break;
     }
 
 }
+
 void studentregisterpage(){
     clear();
     printBlue("\n--- NILE UNIVERSITY MANAGEMENT SYSTEM ---\n");
