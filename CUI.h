@@ -171,7 +171,6 @@ void studentloggedin(Student*&student) {
                                 if (Temp !=NULL){
                                     cout << Temp->Get_Name() << endl;
                                     Sleep(1000);
-                                    cout<<"here"<<endl;
                                     if((student)->RegisterCourse(Temp)){
                                         printRed("Course Registered Successfully");
                                         Sleep(1000);
@@ -216,7 +215,7 @@ void studentloggedin(Student*&student) {
             case '2': // Transcript
                 clear();
                 printBlue("\n--- TRANSCRIPT ---\n");
-               // student->DisplayTranscript(); // Assuming Student class has this method
+               // student->DisplayTranscript(); 
                 printWhite("\nPress any key to continue...");
                 getch();
 
@@ -225,7 +224,7 @@ void studentloggedin(Student*&student) {
             case '3': // Personal Information
                 clear();
                 printBlue("\n--- PERSONAL INFORMATION ---\n");
-               // student->DisplayPersonalInfo(); // Assuming Student class has this method
+               // student->DisplayPersonalInfo(); 
                 break;
 
             case '4': // Logout

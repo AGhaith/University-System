@@ -64,7 +64,7 @@ class Student:public Person{
             printRed("Student didn't finish all required courses");
             return false ;
         } 
-        cout << "check3";
+
         //If student meets all requiremnents
         RegisteredCourses.insert_with_pointer(Course_To_Register);
         NumberOfEnrolledCourses++;
@@ -74,10 +74,9 @@ class Student:public Person{
     bool check_Prerequisites(Course x){
         
         Stack<Course> Prerequisites = x.Get_Copy_Of_Prerequisite_Stack();
-        cout << "newcheck1" << endl;
         if (Prerequisites.is_empty()) {
             cout << "Prerequisite Stack Is Empty" << endl;
-            Sleep(5000);
+            Sleep(1000);
             return true;
         }
         int counter = 1;
@@ -85,12 +84,11 @@ class Student:public Person{
                 cout << "Checking prerequisite Number "  << counter++ << endl;
                 Course *curr_course = Prerequisites.Pop(); 
                 if(curr_course != NULL){
-                    cout << "Course is not NULL getting name..." << endl;
-                    cout << curr_course->Get_Name() << endl;
-                    cout << "Got Name" << endl;
-                    Sleep(2500); 
+                    cout << "Prerequiste Found !!!" << endl;
+                    //cout << "Prerequisite : " << curr_course->Get_Name() << endl;
+                    //Sleep(1000); 
                     if (!((this)->searchWithHashing(*curr_course))) {
-                        cout << "prerequisite not found " << endl;  
+                        cout << "You Don't seem to have finished the required courses" << endl;  
                         return false; 
                     }
                 }else return true;

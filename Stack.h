@@ -72,10 +72,10 @@ T* Pop() {
         return course;
     }
 }
-    T* Peek(){
-        if (is_empty()) return NULL;
-        else return top->Dataaddress ;
-    }
+    // T* Peek(){
+    //     if (is_empty()) return NULL;
+    //     else return top->Dataaddress ;
+    // }
     Stack<T> get_copy(){
         return *this;
     }

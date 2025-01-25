@@ -136,7 +136,9 @@ public:
         // Takes a copy of the stack to pervent manipulation in the original Stack 
         Stack<Course> temp = Prerequisites;
         while (!temp.is_empty()){
-            cout << temp.Pop()->Get_Name() << endl;
+            Course *temptemp = temp.Pop();
+            if (temptemp !=NULL)
+            cout << temptemp->Get_Name() << endl;
         }
     }
     void Add_To_Prerequisites( Course *must_be_finished_course){
