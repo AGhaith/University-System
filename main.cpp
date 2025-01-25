@@ -3,7 +3,7 @@
 
 /* 
     Student Class:
-    to create Students with attributes 
+    to create Students with attributes j
     (string name , string Email , string Phone ,string Address , string Password)
     as for the id we dont need to add it as a parameter because it is calculated and assigned automatically to each Student
 
