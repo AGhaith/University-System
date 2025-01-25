@@ -62,7 +62,7 @@ clear();
         printWhite("Enter Student Password: ");
         cin >> Password;
         Student *x;
-        if ((*MyUniversity).checkstudentdetails(Email,Password,x)) {
+        if (MyUniversity->checkstudentdetails(Email,Password,x)) {
             printBlue("\nStudent login successful!\n");
             studentloggedin(x);
         } else {
@@ -116,13 +116,13 @@ void studentregisterpage(){
         printWhite("Enter Your Password: ");
         cin >> password;
     }
-    Student newstudent(fname,lname,phone,address,password);
-    (*MyUniversity).Add_To_Student_Record(&newstudent);
+    Student *newstudent= new Student(fname,lname,phone,address,password);
+    MyUniversity->Add_To_Student_Record(newstudent);
     clear();
     printBlue("\n--- NILE UNIVERSITY MANAGEMENT SYSTEM ---\n");
     cout << "Student Added Successfully" << endl;
-    cout << "Email : " << newstudent.Get_Email()<< endl;
-    cout << "ID : " << newstudent.Get_ID() << endl;
+    cout << "Email : " << newstudent->Get_Email()<< endl;
+    cout << "ID : " << newstudent->Get_ID() << endl;
 
 }
 void studentloggedin(Student*&student) {
@@ -160,13 +160,13 @@ void studentloggedin(Student*&student) {
                             (this->MyUniversity)->Display_All_Courses();
                             cin >> choice;
                             int realchoice1 = choice - '0';
-                            if (realchoice1 > (this->MyUniversity)->Get_Number_Of_courses() || realchoice1 < 1){
+                            if (realchoice1 > this->MyUniversity->Get_Number_Of_courses() || realchoice1 < 1){
                                 printRed("Invalid Choice");
                                 Sleep(1000);
                                 break;
                             }else {
                                 int realchoice = choice - '0';
-                                Course *Temp = (this->MyUniversity)->FindCourseByNumber(realchoice);
+                                Course *Temp = this->MyUniversity->FindCourseByNumber(realchoice);
 
                                 if (Temp !=NULL){
                                     cout << Temp->Get_Name() << endl;
