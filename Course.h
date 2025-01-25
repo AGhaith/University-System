@@ -5,23 +5,28 @@
 #include <string>
 #include "Stack.h"
 #include "helper.cpp"
+#include "Course waitlist.h"
 using namespace std;
 class Student ;
 class Course {
 private:
     // Each Course Contains ID(Auto,atically assigned) , Credits , Name , Instructor and its prerequisite courses
-    int CourseID, CourseCredits;
+    int CourseID, CourseCredits , course_seats;
     string CourseName, CourseInstructor;
-    Stack<Course> Prerequisites ; 
+    Stack<Course> Prerequisites ;
+    CourseWaitlist<Student>* Waitlist;
+ 
 
 public:
     // Constructor
-    Course(string name = "", string instructor = "", int credits = 0) {
+    Course(string name = "", string instructor = "", int credits = 0 , int seats = 0) {
         CourseID = Course_ID_Counter;
         Course_ID_Counter++;
         CourseName = name;
         CourseInstructor = instructor;
         CourseCredits = credits;
+        course_seats = seats;
+        Waitlist->set_maxSize(seats);
     }
 //Getters
     int Get_ID() {
@@ -55,6 +60,15 @@ public:
     bool operator==(Course other) const {
         return this->CourseID == other.CourseID ;
     }
+    void add_to_waitlist(Student *student){
+        Waitlist->enqueueStudent(student);
+    }
+    void dequeue_from_waitlist(){
+        Waitlist->dequeueStudent();
+    }
+    void stundent_enrolled(){
+        course_seats--;
+    } 
 };
 
 
