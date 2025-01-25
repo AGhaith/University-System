@@ -4,9 +4,19 @@
 #include <cstddef>
 #include <iostream>
 #include <string>
-#include "Course.h"
-#include "BST.h"
+#include "University.h"
 using namespace std;
+
+class BSTNode {
+public:
+    BSTNode* right = NULL;
+    BSTNode* left = NULL;
+    Course Content;
+    BSTNode(Course Content) {
+        this->Content = Content;
+    }
+
+};
 
 
 class Course_Records_Managment {
@@ -62,7 +72,7 @@ Course Findpreorder(BSTNode* root, int& counter, int key) { // HLR
         return rightResult; 
     }
 
-    Course emptyCourse("EMPTY", "NULL", 0);
+    Course emptyCourse("EMPTY", "NULL", 0 , 0);
     return emptyCourse;
 }
     BSTNode* insertNode(BSTNode *&root, Course val){

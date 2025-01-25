@@ -5,12 +5,12 @@
 #include <string>
 #include "Course.h"
 #include "Student.h"
-#include "SLL.h"
-#include"DLL.h"
+#include "hashmap.h"
+#include"Course Enrollment History.h"
 #include "Course Registration.h"
 #include "Course Records Management.h"
 #include "Student Records Management.h"
-
+#include "Course Waitlist.h"
 using namespace std;
 
 class university{
@@ -28,10 +28,10 @@ public:
     void display_Student_Records(){
         StudentRecords.display();
     }
-    void Add_To_Student_Record(Student a){
+    void Add_To_Student_Record(Student *a){
         StudentRecords.Add_student(a);
     }
-    void Add_To_Student_Record(Student a,Course x){
+    void Add_To_Student_Record(Student *a,Course *x){
         StudentRecords.Add_Course(a,x);
     }
     void Delete_Student_Record(int id){

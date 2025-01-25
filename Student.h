@@ -1,14 +1,45 @@
 #ifndef STUDENT_H
 #define STUDENT_H
 
+#include "Student Records Management.h"
+#include "Course.h"
 #include <iostream>
 #include <unordered_map>
-#include <string>
-#include "course.h" // Include full definition of Course
-#include "Person.h"
-#include "SLL.h"    // Include full definition of SLL
+#include <string> // Include full definition of SLL
 using namespace std ;
+class Person{
+    protected:
+    string First_name  ;
+    string Last_name;
+    string Email  ; 
+    string Phone  ; 
+    string Address  ; 
+    string Password  ; 
+    public:
+    string Get_First_Name(){
+        return First_name ; 
+    }
+    string Get_Last_Name(){
+        return Last_name ; 
+    }
+    string Get_Email(){
+        return Email ; 
+    }
+    string Get_Phone(){
+        return Phone ; 
+    }
+    string Get_Address(){
+        return Address ; 
+    }
+    string Get_Password(){
+        return Password ; 
+    }  
+Person() : First_name(""), Last_name(""), Email(""), Phone(""), Address(""), Password("") {}
+virtual ~Person() {}
 
+    
+
+};
 
 
 class Student:public Person{
@@ -17,11 +48,11 @@ class Student:public Person{
 
     int Student_id; 
     SLL<Course> RegisteredCourses;
-    SLL<Course> Waitlist;
     unordered_map<int,SLL<Course>> FinishedCoursesHashmap;
     string suffix = "@nu.edu.eg";
     string dot = ".";
     int NumberOfEnrolledCourses=0;
+
     public:
     Student(){
 
@@ -40,91 +71,29 @@ class Student:public Person{
     int Get_ID(){
         return Student_id ; 
     }
+    void add_course(){
+        NumberOfEnrolledCourses++;
+    }
+    void withdraw_course(Course course){
+        NumberOfEnrolledCourses--;
+    }
     int Get_Number_Of_Enrolled_Courses(){
         return NumberOfEnrolledCourses;
     }
     Course FindCourseByNumber(int Course_To_Find){
         return RegisteredCourses.FindCourseByNumber(Course_To_Find);
     }
-
-
-    bool check_Prerequisites(Course x ){
-        
-        Stack<Course> copy_prerq = x.getcopy() ; 
-
-        while (!copy_prerq.is_empty()){
-
-            Course curr_course = copy_prerq.Pop();
-
-            if ((this)->searchWithHashing(curr_course)){
-                cout << "student already registerd" << endl ; 
-                return false ; 
-            }
-            
-        }
-        return true;
+    SLL<Course> *getRegisteredCourses(){
+        return &RegisteredCourses;
     }
-
-
-    bool RegisterCourse(Course Course_To_Register){
-        // SLL
-        
-        if (RegisteredCourses.Find(Course_To_Register))
-        {
-            Course_To_Register.showrequiredcourses();
-            printRed("student already registered");
-            cout << endl; 
-            return false ;
-        }
-        //check in stack of prerquistes
-
-        if ((this->check_Prerequisites(Course_To_Register))){ 
-                printRed("Student didn't finish all required courses");
-                cout << endl; 
-                return false ;
-            }
-        
-        RegisteredCourses.insert(Course_To_Register);
-        NumberOfEnrolledCourses++;
-        cout <<"student succefully enrolled " << endl ;
-        return true ;
-        
+    unordered_map<int,SLL<Course>> *getFinishedCourses(){
+        return &FinishedCoursesHashmap;
     }
-    bool WithdrawCourse(Course Course_To_Withdraw){
-        bool temp = RegisteredCourses.Delete_Course(Course_To_Withdraw);
-        if (temp){
-            NumberOfEnrolledCourses--;
-            return temp;
-        }
-        else return temp;
-        
+    void add_to_finished_courses(Course *course){
+        FinishedCoursesHashmap[course->get_ID()].insert(course);
     }
     void Display_Enrolled_Courses(){
         RegisteredCourses.Display_Courses();
-    }
-    int hashing(Course mycourse){
-        int final = 0;
-        string a = mycourse.get_name();
-        for(int i = 0 ; i < a.length() ; i++){
-            int temp = a[i];
-            if (i-1==a.length()){
-                final = final + temp*2;
-            }else {
-                final+=a[i];
-            }
-        }
-        return final;
-
-    }
-    void Add_To_Finshed_courses(Course mycourse){
-
-        FinishedCoursesHashmap[hashing(mycourse)].insert(mycourse);
-
-    }
-    // Look up courses with hashtable
-    bool searchWithHashing(Course x){
-        int index = hashing(x);
-        return FinishedCoursesHashmap[index].Find(x);
     }
     /*void display_enrolled_courses(){
 

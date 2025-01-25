@@ -3,24 +3,29 @@
 
 #include <iostream>
 #include <string>
-#include "Stack.h"
 #include "helper.cpp"
+#include "Course Registration.h"
+#include "Course waitlist.h"
+
 using namespace std;
 class Student ;
+
 class Course {
 private:
-    int CourseID, CourseCredits;
+    int CourseID, CourseCredits ,course_seats ;
     string CourseName, CourseInstructor;
     Stack<Course> Prerequisites ; 
+    CourseWaitlist<Student> Waitlist;
 
 public:
-    Course(string name = "", string instructor = "", int credits = 0) {
+    Course(string name = "", string instructor = "", int credits = 0 , int maxstudents = 0  ) {
         CourseID = Course_ID_Counter;
         Course_ID_Counter++;
         CourseName = name;
         CourseInstructor = instructor;
         CourseCredits = credits;
-        Stack<Course> Prerequisites;
+        course_seats = maxstudents;
+
     }
 
     int get_ID() {
@@ -38,8 +43,21 @@ public:
     int get_credits() {
         return CourseCredits;
     }
+    int get_seats(){
+        return course_seats;
+    }
+    void add_to_waitlist(Student &student){
+        Waitlist.enqueueStudent(student);
+    }
+    void dequeue_from_waitlist(){
+        Waitlist.dequeueStudent();
+    }
+    void stundent_enrolled(){
+        course_seats--;
+    }
     void showrequiredcourses(){
-        Stack<Course> temp = Prerequisites;
+        Stack<Course> temp = Prerequisites.copy();
+        cout << "Required courses for " << CourseName << ":" << endl;
         while (!temp.is_empty()){
             cout << temp.Pop().get_name() << endl;
         }
@@ -52,7 +70,7 @@ public:
         Prerequisites.Push(must_be_finished_course);
     }
     Stack<Course> getcopy()const{
-        return Prerequisites.get_copy();
+        return Prerequisites.copy();
     }
 
 };

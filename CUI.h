@@ -4,10 +4,7 @@
 #include <conio.h>
 #include <thread> 
 #include <iostream>
-#include "Course.h"
 #include "University.h"
-#include "windows.h"
-#include "Student.h"
 
 using namespace std ;
 
@@ -117,17 +114,18 @@ void studentregisterpage(){
         printWhite("Enter Your Password: ");
         cin >> password;
     }
-    Student newstudent(fname,lname,phone,address,password);
+    Student* newstudent = new Student(fname, lname, phone, address, password);
     (*MyUniversity).Add_To_Student_Record(newstudent);
     clear();
     printBlue("\n--- NILE UNIVERSITY MANAGEMENT SYSTEM ---\n");
     cout << "Student Added Successfully" << endl;
-    cout << "Email : " << newstudent.Get_Email()<< endl;
-    cout << "ID : " << newstudent.Get_ID() << endl;
+    cout << "Email : " << newstudent->Get_Email()<< endl;
+    cout << "ID : " << newstudent->Get_ID() << endl;
 
 }
 void studentloggedin(Student*&student) {
     char choice;
+    Course_Regestraion<Course> omda;
     while (true) {
         clear();
         printBlue("\n--- NILE UNIVERSITY MANAGEMENT SYSTEM ---\n");
@@ -169,7 +167,7 @@ void studentloggedin(Student*&student) {
                                 int realchoice = choice - '0';
                                 Course Temp = (this->MyUniversity)->FindCourseByNumber(realchoice);
                                 if (Temp.get_name() != "EMPTY"){
-                                    if((student)->RegisterCourse(Temp)){
+                                    if(omda.validation_for_course(&Temp,student)){
                                         printRed("Course Registered Successfully");
                                         cout << endl;
                                         Sleep(500);
@@ -201,7 +199,7 @@ void studentloggedin(Student*&student) {
                                 int realchoice = choice - '0';
                                 Course Temp = student->FindCourseByNumber(realchoice);
                                 if (Temp.get_name() != "EMPTY"){
-                                    if ((student)->WithdrawCourse(Temp)){
+                                    if (omda.WithdrawCourse(&Temp,student)){
                                     printRed("Course Withdrawn Successfully");
                                     cout << endl;
                                     Sleep(500);

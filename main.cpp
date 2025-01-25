@@ -1,6 +1,6 @@
 #include"windows.h"
 #include<iostream>
-#include "Student.h"
+
 /* 
     Student Class:
     to create Students with attributes 
@@ -8,7 +8,7 @@
     as for the id we dont need to add it as a parameter because it is calculated and assigned automatically to each Student
 
 */
-#include "Course.h"
+
 /* 
     Course Class:
     to create Courses with attributes 
@@ -41,11 +41,11 @@ int main(){
 university nileuniversity;
 // Creating Courses 
 
-Course c1("MATH101","NULL",4);
-Course c2("MATH102","NULL",4);
-Course c3("MATH103","NULL",4);
-Course c4("CSCI207","NULL",4);
-Course c5("CSCI112","NULL",4);
+Course c1("MATH101","NULL",4 , 1);
+Course c2("MATH102","NULL",4 , 1);
+Course c3("MATH103","NULL",4 , 1);
+Course c4("CSCI207","NULL",4 , 1);
+Course c5("CSCI112","NULL",4 , 1);
 
 // Adding them to the record
 
@@ -66,9 +66,9 @@ Student s3("Yousef","Amir","01021565688","8th District","Password@3");
 
 // Adding them to the record
 
-nileuniversity.Add_To_Student_Record(s1);
-nileuniversity.Add_To_Student_Record(s2);
-nileuniversity.Add_To_Student_Record(s3);
+nileuniversity.Add_To_Student_Record(&s1);
+nileuniversity.Add_To_Student_Record(&s2);
+nileuniversity.Add_To_Student_Record(&s3);
 c2.add_to_Prerequisites(c1);
 // c3.add_to_Prerequisites(c2);
 
