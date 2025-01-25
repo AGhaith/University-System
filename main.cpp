@@ -1,6 +1,5 @@
 #include"windows.h"
 #include<iostream>
-#include "Student.h"
 /* 
     Student Class:
     to create Students with attributes 
@@ -41,11 +40,11 @@ int main(){
 university nileuniversity;
 // Creating Courses 
 
-Course c1("MATH101","NULL",4);
-Course c2("MATH102","NULL",4);
-Course c3("MATH103","NULL",4);
-Course c4("CSCI207","NULL",4);
-Course c5("CSCI112","NULL",4);
+Course c1("MATH101","NULL",4,1);
+Course c2("MATH102","NULL",4,2);
+Course c3("MATH103","NULL",4,3);
+Course c4("CSCI207","NULL",4,4);
+Course c5("CSCI112","NULL",4,5);
 
 // Adding them to the record
 

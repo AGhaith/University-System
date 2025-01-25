@@ -1,15 +1,12 @@
-#ifndef STUDENT_H
-#define STUDENT_H
 
 #include <iostream>
 #include <unordered_map>
 #include <string>
 #include "Course.h"
-#include "course.h" 
 #include "Person.h"
-#include "SLL.h"    
+#include "SLL.h"
 using namespace std ;
-
+class Course;
 
 
 class Student:public Person{
@@ -50,16 +47,19 @@ class Student:public Person{
 
     bool RegisterCourse(Course *Course_To_Register){
         // check in hash
-        cout << "check1";
         if ( RegisteredCourses.Findinaddress(*Course_To_Register)) 
         {
             printRed("You Are Already Registered");
             return false ;
         }
-        
-        cout << "check2";
         //check in stack of prerquistes
-
+        if (!Course_To_Register->check_seats()){
+            Course_To_Register->add_to_waitlist(this);
+            printRed("Unfortunatly No Seats Are available, you have been added to the waitlist");
+            printRed("your number is ");
+            cout << Course_To_Register->How_Many();
+            return false;
+        }
         if (!(this->check_Prerequisites(*Course_To_Register))){ 
             printRed("Student didn't finish all required courses");
             return false ;
@@ -98,7 +98,7 @@ class Student:public Person{
         return true;
     }
     bool WithdrawCourse(Course* Course_To_Withdraw){
-        bool temp = RegisteredCourses.Delete_Course(Course_To_Withdraw);
+        bool temp = this->RegisteredCourses.Delete_Course(Course_To_Withdraw);
         if (temp){
             NumberOfEnrolledCourses--;
             return temp;
@@ -143,5 +143,3 @@ class Student:public Person{
     }
 
 };
-
-#endif

@@ -180,6 +180,7 @@ class SLL{
         if (*curr->Dataaddress == *x){
             head=curr->next;
             delete curr;
+            x->dequeue_from_waitlist();
             return true;
         }
         while(curr->next != NULL && !(*curr->next->Dataaddress == *x)){
@@ -189,6 +190,8 @@ class SLL{
             temp = curr->next;
             curr->next = temp->next;
             delete temp;
+            Student*  studentturn = x->dequeue_from_waitlist();
+            //studentturn->
             return true;
         }
     }

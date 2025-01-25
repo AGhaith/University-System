@@ -7,7 +7,6 @@
 #include "Course.h"
 #include "University.h"
 #include "windows.h"
-#include "Student.h"
 
 using namespace std ;
 

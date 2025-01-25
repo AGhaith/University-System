@@ -5,17 +5,97 @@
 #include <string>
 #include "Stack.h"
 #include "helper.cpp"
-#include "Course waitlist.h"
 using namespace std;
-class Student ;
+class Student;
+
+
+template<class T>
+class QueueNode{
+    public:
+    QueueNode<T> * Next ; 
+    Student *Data ;
+
+    QueueNode<T>(Student *Data){
+        Next = NULL ; 
+        this->Data = Data ; 
+    }
+};
+template<class T>
+class CourseWaitlist {
+private:
+    QueueNode<T>* front;
+    QueueNode<T>* rear;
+    int Size;
+
+public: 
+    CourseWaitlist()
+    {
+        front=nullptr;
+        rear=nullptr;
+        Size=0;
+    }
+    void enqueueStudent(Student *student) {
+
+        QueueNode<T>* newNode = new QueueNode<T>(student);
+
+        if (rear == NULL) {
+            front = rear = newNode;
+        } else {
+            rear->Next = newNode;
+            rear = newNode;
+        }
+
+        Size++;
+    }
+
+
+    Student* dequeueStudent(Course *x) {
+        if (front == nullptr) {
+            cout << "Waitlist is empty!" << endl;
+            return NULL;
+        }
+        QueueNode<T>* temp = front;
+        Student* temp2 = temp->Data;
+        front = front->Next;
+        delete temp;
+        Size--;
+
+        if (front == NULL) {
+            rear = NULL;
+        }
+        return temp2;
+    }
+
+    void displayWaitlist() {
+        if (front == NULL) {
+            printRed("No students are currently on the waitlist.");
+            return;
+        }
+
+        cout << "Waitlist:" << endl;
+        QueueNode<T>* current = front;
+        while (current != NULL) {
+            cout << current->Data->Get_First_Name() << " " <<current->Data->Get_Last_Name() << " || ";
+            current = current->Next;
+        }
+        cout << endl ; 
+    }
+    int get_size(){
+        return Size;
+    }
+    bool is_empty(){
+        return front == NULL;
+    }
+};
 class Course {
 private:
     // Each Course Contains ID(Auto,atically assigned) , Credits , Name , Instructor and its prerequisite courses
     int CourseID, CourseCredits , course_seats;
     string CourseName, CourseInstructor;
     Stack<Course> Prerequisites ;
-    CourseWaitlist<Student>* Waitlist;
- 
+    CourseWaitlist<Student> Waitlist;
+    int taken_seats=0;
+
 
 public:
     // Constructor
@@ -26,9 +106,19 @@ public:
         CourseInstructor = instructor;
         CourseCredits = credits;
         course_seats = seats;
-        Waitlist->set_maxSize(seats);
     }
 //Getters
+    int Get_Available_seats(){
+        return course_seats-taken_seats;
+    }
+    bool check_seats(){
+        if (this->Get_Available_seats() == 0){
+            printRed("Course is full");
+            cout << endl;
+            return false;
+        }
+        return true;
+    }
     int Get_ID() {
         return CourseID;
     }
@@ -56,19 +146,21 @@ public:
     Stack<Course> Get_Copy_Of_Prerequisite_Stack(){
         return Prerequisites;
     }
+    int How_Many(){
+        return Waitlist.get_size();
+    }
     //Overriding Operator to make (==) Compare the Course ID as no two courses can have the same ID
     bool operator==(Course other) const {
         return this->CourseID == other.CourseID ;
     }
     void add_to_waitlist(Student *student){
-        Waitlist->enqueueStudent(student);
+        Waitlist.enqueueStudent(student);
     }
-    void dequeue_from_waitlist(){
-        Waitlist->dequeueStudent();
+    Student* dequeue_from_waitlist(){
+        return Waitlist.dequeueStudent(this);
     }
-    void stundent_enrolled(){
-        course_seats--;
-    } 
+
+
 };
 
 

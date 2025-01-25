@@ -4,10 +4,8 @@
 #include <iostream>
 #include <string>
 #include "Course.h"
-#include "Student.h"
 #include "SLL.h"
 #include"DLL.h"
-#include "Course Registration.h"
 #include "Course Records Management.h"
 #include "Student Records Management.h"
 
