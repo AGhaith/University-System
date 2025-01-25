@@ -111,6 +111,12 @@ public:
     int Get_Available_seats(){
         return course_seats-taken_seats;
     }
+    void take_seat(){
+        this->taken_seats++;
+    }
+    void free_seat(){
+        this->taken_seats--;
+    }
     bool check_seats(){
         if (this->Get_Available_seats() == 0){
             printRed("Course is full");

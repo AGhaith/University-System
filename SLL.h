@@ -180,7 +180,9 @@ class SLL{
         if (*curr->Dataaddress == *x){
             head=curr->next;
             delete curr;
-            x->dequeue_from_waitlist();
+            Student*  studentturn = x->dequeue_from_waitlist();
+            x->free_seat();
+            studentturn->RegisterCourse(x);
             return true;
         }
         while(curr->next != NULL && !(*curr->next->Dataaddress == *x)){
@@ -191,7 +193,8 @@ class SLL{
             curr->next = temp->next;
             delete temp;
             Student*  studentturn = x->dequeue_from_waitlist();
-            //studentturn->
+            x->free_seat();
+            studentturn->RegisterCourse(x);
             return true;
         }
     }
@@ -226,6 +229,24 @@ class SLL{
         }
         if (curr==NULL)return NULL;
         return curr->Dataaddress;
+    }
+    
+    void swap(SLLNode<T>* curr, SLLNode<T>* innercurr){
+        T *temp = curr->Dataaddress;
+        curr->Dataaddress = innercurr->Dataaddress;
+        innercurr->Dataaddress = temp;
+    }
+
+    void selection_sort(){
+        for (SLLNode<T>* curr = head ; curr!= NULL  ; curr = curr->next){
+            SLLNode<T>* minnode = curr ; 
+            for (SLLNode<T>* innercurr = curr->next  ;  innercurr!= NULL ; innercurr = innercurr->next){
+                if (innercurr->Dataaddress < minnode->Dataaddress ){
+                    minnode = innercurr;
+                }
+            }
+            swap(curr, minnode);
+        }
     }
 };
 

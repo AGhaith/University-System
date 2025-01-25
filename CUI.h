@@ -271,7 +271,7 @@ void studentloggedin(Student*&student) {
             case '2': // Transcript
                 clear();
                 printBlue("\n--- TRANSCRIPT ---\n");
-               // student->DisplayTranscript(); 
+               student->DisplayTranscript(); 
                 printWhite("\nPress any key to continue...");
                 getch();
 

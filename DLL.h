@@ -11,9 +11,9 @@ class DLLNode{
     public:
     DLLNode * next ; 
     DLLNode * prev ;
-    T data ; 
+    T *data ; 
 
-    DLLNode( T data ){
+    DLLNode( T *data ){
         next = NULL ; 
         prev = NULL ; 
         this->data = data ;
@@ -30,7 +30,7 @@ class DLL{
 
     public:
 
-    void add( T data ){
+    void add( T *data ){
         DLLNode<T> *newnode = new DLLNode<T>( data )  ;
 
         if (head == 0 ){
@@ -51,7 +51,7 @@ class DLL{
         }
         cout << "Enrollment history" ; 
         while ( curr != NULL){
-            cout << curr->data << " , " ; 
+            cout << curr->data->Get_Name()<< "   " << " || " ; 
             curr = curr->next ;
         }
         cout << endl ; 

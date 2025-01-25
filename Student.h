@@ -16,6 +16,7 @@ class Student:public Person{
     int Student_id; 
     SLL<Course> RegisteredCourses;
     SLL<Course> Waitlist;
+    DLL<Course> Course_Enrollment_History ; 
     unordered_map<int,SLL<Course>> FinishedCoursesHashmap;
     string suffix = "@nu.edu.eg";
     string dot = ".";
@@ -68,6 +69,8 @@ class Student:public Person{
         //If student meets all requiremnents
         RegisteredCourses.insert_with_pointer(Course_To_Register);
         NumberOfEnrolledCourses++;
+        Course_Enrollment_History.add(Course_To_Register);
+        Course_To_Register->take_seat();
         cout <<"student succefully enrolled " << endl ;
         return true ;
     }
@@ -144,8 +147,13 @@ class Student:public Person{
 
         }
     }
+    void DisplayTranscript(){
+        Course_Enrollment_History.view();
+    }
     bool operator==(Student other) const {
         return this->Student_id == other.Student_id ;
     }
-
+    bool operator<(Student *other) const {
+        return this->Student_id < other->Student_id ;
+    }
 };
