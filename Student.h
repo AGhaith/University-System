@@ -135,7 +135,15 @@ class Student:public Person{
 
         finished_courses.display() ; 
     }*/
-    
+    void print_student_info(){
+        Student* curr = this;
+        if (curr != NULL){
+            cout << "-----------------------------------------------------------------------------------------" << endl;
+            cout << curr->Get_ID() << "  ||  " << curr->Get_First_Name() << " " << curr->Get_Last_Name() << "  ||  " << curr->Get_Email() << "  ||  " << curr->Get_Phone() << "  ||  " << curr->Get_Address() << "  ||  " << curr->Get_Password() << endl ;
+            cout << "-----------------------------------------------------------------------------------------" << endl;
+
+        }
+    }
     bool operator==(Student other) const {
         return this->Student_id == other.Student_id ;
     }

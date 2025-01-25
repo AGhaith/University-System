@@ -76,7 +76,8 @@ void registerpage(){
     char choice;
     printBlue("\n--- NILE UNIVERSITY MANAGEMENT SYSTEM ---\n");
     printWhite("1. Student Account\n");
-    printWhite("2. Moderator Account\n");
+    printWhite("2. Moderator Account(Future Work)\n");
+    printWhite("3. Back\n");
     printWhite("Please select an option: ");
     cin >> choice;
     switch (choice)
@@ -88,6 +89,7 @@ void registerpage(){
         registerpage();
         break;
     default:
+        clear();
         break;
     }
 
@@ -157,7 +159,7 @@ void studentloggedin(Student*&student) {
                         if (choice == '1'){//Register
                             clear();
                             printBlue("\n--- AVAILABLE COURSES ---\n");
-                            (this->MyUniversity)->Display_All_Courses();
+                            this->MyUniversity->Display_All_Courses();
                             cin >> choice;
                             int realchoice1 = choice - '0';
                             if (realchoice1 > this->MyUniversity->Get_Number_Of_courses() || realchoice1 < 1){
@@ -189,7 +191,7 @@ void studentloggedin(Student*&student) {
                             student->Display_Enrolled_Courses();
                             cin >> choice;
                             int realchoice1 = choice - '0';
-                            if (realchoice1 > (student)->Get_Number_Of_Enrolled_Courses() || realchoice1 < 1){
+                            if (realchoice1 > student->Get_Number_Of_Enrolled_Courses() || realchoice1 < 1){
                                 printRed("Invalid Choice");
                                 Sleep(1000);
                                 break;
@@ -197,7 +199,7 @@ void studentloggedin(Student*&student) {
                                 int realchoice = choice - '0';
                                 Course *Temp = student->FindCourseByNumber(realchoice);
                                 if (Temp != NULL){
-                                    if ((student)->WithdrawCourse(Temp)){
+                                    if (student->WithdrawCourse(Temp)){
                                     printRed("Course Withdrawn Successfully");
                                     cout << endl;
                                     Sleep(1000);
@@ -224,7 +226,10 @@ void studentloggedin(Student*&student) {
             case '3': // Personal Information
                 clear();
                 printBlue("\n--- PERSONAL INFORMATION ---\n");
-               // student->DisplayPersonalInfo(); 
+                student->print_student_info(); 
+                printWhite("\nPress any key to continue...");
+                getch();
+                clear();
                 break;
 
             case '4': // Logout

@@ -60,7 +60,7 @@ nileuniversity.Add_New_Course(&c5);
 Student s1("Ahmed","Ghaith","01021565688","8th District","Password@1");
 
 //A.Ghaith00@nu.edu.eg
-//Password@
+//Password@1
 
 Student s2("Omar","Sholkamy","01021565688","8th District","Password@2");
 Student s3("Yousef","Amir","01021565688","8th District","Password@3");
