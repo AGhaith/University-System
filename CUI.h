@@ -167,14 +167,15 @@ void studentloggedin(Student*&student) {
                                 break;
                             }else {
                                 int realchoice = choice - '0';
-                                Course Temp = (this->MyUniversity)->FindCourseByNumber(realchoice);
-                                cout << Temp.Get_Name() << endl;
-                                Sleep(1000);
-                                if (Temp.Get_Name() != "EMPTY"){
+                                Course *Temp = (this->MyUniversity)->FindCourseByNumber(realchoice);
+
+                                if (Temp !=NULL){
+                                    cout << Temp->Get_Name() << endl;
+                                    Sleep(1000);
+                                    cout<<"here"<<endl;
                                     if((student)->RegisterCourse(Temp)){
                                         printRed("Course Registered Successfully");
                                         Sleep(1000);
-                                        
                                     }else {
                                         printRed("Unable To Register Course");
                                         Sleep(1000);
@@ -196,8 +197,8 @@ void studentloggedin(Student*&student) {
                                 break;
                             }else {
                                 int realchoice = choice - '0';
-                                Course Temp = student->FindCourseByNumber(realchoice);
-                                if (Temp.Get_Name() != "EMPTY"){
+                                Course *Temp = student->FindCourseByNumber(realchoice);
+                                if (Temp != NULL){
                                     if ((student)->WithdrawCourse(Temp)){
                                     printRed("Course Withdrawn Successfully");
                                     cout << endl;

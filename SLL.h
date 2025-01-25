@@ -43,6 +43,21 @@ class SLL{
         }
 
     }
+    bool Findinaddress(T x){
+        SLLNode<T>*curr = head;
+        while(curr!=NULL){
+            if (*(curr->Dataaddress) == x){
+                break;
+            }
+            curr = curr->next;
+        }
+        if (curr == NULL){
+            return false;
+        }else {
+            return true;
+        }
+
+    }
     //If given ID
     bool Find_By_ID(int x){
         SLLNode<T>*curr = head;
@@ -103,7 +118,7 @@ class SLL{
         }
         SLLNode<Course> *curr = head;
         while (curr != NULL){
-        cout << counter << '.' << curr->Data.Get_Name() << endl;
+        cout << counter << '.' << curr->Dataaddress->Get_Name() << endl;
         counter++;
         curr=curr->next;
         }
@@ -153,7 +168,7 @@ class SLL{
         }
     
     }
-    bool Delete_Course(Course x){
+    bool Delete_Course(Course* x){
 
         if (head == NULL) {
             cout << "No Enrolled Courses" << endl;
@@ -162,12 +177,12 @@ class SLL{
         SLLNode<Course> *curr = head;
         SLLNode<Course> *temp ;
         
-        if (curr->Data == x){
+        if (*curr->Dataaddress == *x){
             head=curr->next;
             delete curr;
             return true;
         }
-        while(curr->next != NULL && !(curr->next->Data == x)){
+        while(curr->next != NULL && !(*curr->next->Dataaddress == *x)){
             curr = curr->next;
         }
         if (curr == NULL){return false;}else {
@@ -198,17 +213,16 @@ class SLL{
     curr->next = temp->next;
     delete temp;
     }
-    Course FindCourseByNumber(int x){
+    Course* FindCourseByNumber(int x){
         int counter = 1;
-        Course emptyCourse("EMPTY", "NULL", 0); 
-        if (head == NULL)return emptyCourse;
+        if (head == NULL)return NULL;
         SLLNode<Course> *curr = head;
         while(curr!=NULL && counter != x){
             curr=curr->next;
             counter++;
         }
-        if (curr==NULL)return emptyCourse;
-        return curr->Data;
+        if (curr==NULL)return NULL;
+        return curr->Dataaddress;
     }
 };
 

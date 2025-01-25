@@ -5,9 +5,9 @@
 #include <unordered_map>
 #include <string>
 #include "Course.h"
-#include "course.h" // Include full definition of Course
+#include "course.h" 
 #include "Person.h"
-#include "SLL.h"    // Include full definition of SLL
+#include "SLL.h"    
 using namespace std ;
 
 
@@ -44,59 +44,60 @@ class Student:public Person{
     int Get_Number_Of_Enrolled_Courses(){
         return NumberOfEnrolledCourses;
     }
-    Course FindCourseByNumber(int Course_To_Find){
+    Course *FindCourseByNumber(int Course_To_Find){
         return RegisteredCourses.FindCourseByNumber(Course_To_Find);
     }
 
-
-    bool check_Prerequisites(Course x){
-        
-        Stack<Course> Prerequisites = x.Get_Copy_Of_Prerequisite_Stack();
-        if (Prerequisites.is_empty()) {
-            return true;
-        }
-        while (!Prerequisites.is_empty()) {
-                Course curr_course = Prerequisites.Peek(); 
-                cout << curr_course.Get_Name() << endl;
-                Sleep(1000); 
-                if ((this)->searchWithHashing(curr_course)) {
-                    Prerequisites.Pop(); 
-                } else {
-                    cout << "prerequisite not found " << endl; 
-                    Sleep(1000); 
-                    return false; 
-                }
-            }
-
-        if(!Prerequisites.is_empty()){
-            return false ; // lesa feha courses makhlshasah
-        }
-        return true;
-    }
-
-
-    bool RegisterCourse(Course Course_To_Register){
+    bool RegisterCourse(Course *Course_To_Register){
         // check in hash
-        if (RegisteredCourses.Find(Course_To_Register))
+        cout << "check1";
+        if ( RegisteredCourses.Findinaddress(*Course_To_Register)) 
         {
-            Course_To_Register.List_Prerequisites();
             printRed("You Are Already Registered");
             return false ;
         }
+        
+        cout << "check2";
         //check in stack of prerquistes
 
-        if (!(this->check_Prerequisites(Course_To_Register))){ 
+        if (!(this->check_Prerequisites(*Course_To_Register))){ 
             printRed("Student didn't finish all required courses");
             return false ;
         } 
+        cout << "check3";
         //If student meets all requiremnents
-        RegisteredCourses.insert(Course_To_Register);
+        RegisteredCourses.insert_with_pointer(Course_To_Register);
         NumberOfEnrolledCourses++;
         cout <<"student succefully enrolled " << endl ;
         return true ;
-        
     }
-    bool WithdrawCourse(Course Course_To_Withdraw){
+    bool check_Prerequisites(Course x){
+        
+        Stack<Course> Prerequisites = x.Get_Copy_Of_Prerequisite_Stack();
+        cout << "newcheck1" << endl;
+        if (Prerequisites.is_empty()) {
+            cout << "Prerequisite Stack Is Empty" << endl;
+            Sleep(5000);
+            return true;
+        }
+        int counter = 1;
+        while (!Prerequisites.is_empty()) {
+                cout << "Checking prerequisite Number "  << counter++ << endl;
+                Course *curr_course = Prerequisites.Pop(); 
+                if(curr_course != NULL){
+                    cout << "Course is not NULL getting name..." << endl;
+                    cout << curr_course->Get_Name() << endl;
+                    cout << "Got Name" << endl;
+                    Sleep(2500); 
+                    if (!((this)->searchWithHashing(*curr_course))) {
+                        cout << "prerequisite not found " << endl;  
+                        return false; 
+                    }
+                }else return true;
+            }
+        return true;
+    }
+    bool WithdrawCourse(Course* Course_To_Withdraw){
         bool temp = RegisteredCourses.Delete_Course(Course_To_Withdraw);
         if (temp){
             NumberOfEnrolledCourses--;

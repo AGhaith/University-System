@@ -50,7 +50,7 @@ public:
     void Display_All_Courses(){
         CourseRecords.Display();
     }
-    Course FindCourseByNumber(int x){
+    Course*FindCourseByNumber(int x){
         return CourseRecords.FindCourseByNumber(x);
     }
     bool checkstudentdetails(string email,string password,Student *&x){

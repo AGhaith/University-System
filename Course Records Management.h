@@ -34,36 +34,33 @@ public:
         Displaypreorder(root->left,counter);
         Displaypreorder(root->right,counter);
     }
-    Course FindCourseByNumber(int x) {
+    Course *FindCourseByNumber(int x) {
     int counter = 0; 
     return Findpreorder(root, counter, x);
     }
 
-    Course Findpreorder(BSTNode* root, int& counter, int key) { // HLR 
+    Course *Findpreorder(BSTNode* root, int counter, int key) { // HLR 
         if (root == nullptr) {
-            Course emptyCourse("EMPTY", "NULL", 0); 
-            return emptyCourse;
+            return NULL;
         }
 
         counter++; 
         if (counter == key) {
-            return *root->Content;
+            return root->Content;
         }
 
         // Traverse the left subtree
-        Course leftResult = Findpreorder(root->left, counter, key);
-        if (leftResult.Get_Name() != "EMPTY") { 
+        Course* leftResult = Findpreorder(root->left, counter, key);
+        if (leftResult != NULL) { 
             return leftResult; 
         }
 
         // Traverse the right subtree
-        Course rightResult = Findpreorder(root->right, counter, key);
-        if (rightResult.Get_Name() != "EMPTY") {
+        Course* rightResult = Findpreorder(root->right, counter, key);
+        if (rightResult != NULL) {
             return rightResult; 
         }
-
-        Course emptyCourse("EMPTY", "NULL", 0);
-        return emptyCourse;
+        return NULL;
     }
     BSTNode* insertNode(BSTNode *&root, Course *val){
         if (root == NULL){
