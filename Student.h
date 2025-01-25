@@ -81,14 +81,12 @@ class Student:public Person{
         {
             Course_To_Register.List_Prerequisites();
             printRed("You Are Already Registered");
-            cout << endl; 
             return false ;
         }
         //check in stack of prerquistes
 
         if (!(this->check_Prerequisites(Course_To_Register))){ 
             printRed("Student didn't finish all required courses");
-            cout << endl; 
             return false ;
         } 
         //If student meets all requiremnents

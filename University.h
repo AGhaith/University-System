@@ -28,17 +28,17 @@ public:
     void display_Student_Records(){
         StudentRecords.display();
     }
-    void Add_To_Student_Record(Student a){
+    void Add_To_Student_Record(Student *a){
         StudentRecords.Add_student(a);
     }
-    void Add_To_Student_Record(Student a,Course x){
-        StudentRecords.Add_Course(a,x);
-    }
+    // void Add_To_Student_Record(Student a,Course x){
+    //     StudentRecords.Add_Course(a,x);
+    // }
     void Delete_Student_Record(int id){
         StudentRecords.Delete_Student(id);
 
     }
-    void Add_New_Course(Course A){
+    void Add_New_Course(Course *A){
         NumberOfCourses++;
         CourseRecords.addCourse(A);
     }

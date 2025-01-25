@@ -49,11 +49,10 @@ Course c5("CSCI112","NULL",4);
 
 // Adding them to the record
 
-nileuniversity.Add_New_Course(c1);
-nileuniversity.Add_New_Course(c2);
-nileuniversity.Add_New_Course(c3);
-nileuniversity.Add_New_Course(c4);
-nileuniversity.Add_New_Course(c5);
+nileuniversity.Add_New_Course(&c1);
+nileuniversity.Add_New_Course(&c3);
+nileuniversity.Add_New_Course(&c4);
+nileuniversity.Add_New_Course(&c5);
 
 
 // Creating Students 
@@ -66,11 +65,11 @@ Student s3("Yousef","Amir","01021565688","8th District","Password@3");
 
 // Adding them to the record
 
-nileuniversity.Add_To_Student_Record(s1);
-nileuniversity.Add_To_Student_Record(s2);
-nileuniversity.Add_To_Student_Record(s3);
-c2.Add_To_Prerequisites(c1);
-c3.Add_To_Prerequisites(c2);
+nileuniversity.Add_To_Student_Record(&s1);
+nileuniversity.Add_To_Student_Record(&s2);
+nileuniversity.Add_To_Student_Record(&s3);
+c2.Add_To_Prerequisites(&c1);
+c3.Add_To_Prerequisites(&c2);
 
 
 CUI commandlineinterface(nileuniversity);

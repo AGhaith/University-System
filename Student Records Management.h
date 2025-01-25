@@ -11,8 +11,8 @@ class Student_Records_Management{
     private:
     SLL<Student> SLL_Students ; 
     public:
-    void Add_student(Student mystudent){
-        SLL_Students.insert(mystudent) ; 
+    void Add_student(Student *mystudent){
+        SLL_Students.insert_with_pointer(mystudent) ; 
     }
     void Add_Course(Student mystudent , Course x){
         mystudent.Add_To_Finshed_courses(x);

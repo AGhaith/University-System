@@ -10,13 +10,16 @@ class StackNode{
     
     public:
 
-    T Data  ; 
+    T Data  ;
+    T* Dataaddress; 
     StackNode<T> *next = NULL ; 
 
-    StackNode(T Data){
-        
+    StackNode(T Data){ 
         this->Data = Data ;
-
+    }
+    
+    StackNode(T* Data){ 
+        this->Dataaddress = Data ;
     }
 };
 
@@ -30,6 +33,20 @@ class Stack{
     public:
 
     void Push( T Data ){
+
+        StackNode<T>* newnode = new StackNode<T>(Data) ; 
+
+        if (is_empty()){
+
+            top = newnode ;
+            return;
+        }
+        else {
+            newnode->next = top ;  
+            top = newnode ; 
+        }
+    }
+        void PushWithAddress( T *Data ){
 
         StackNode<T>* newnode = new StackNode<T>(Data) ; 
 

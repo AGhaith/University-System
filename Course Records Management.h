@@ -12,7 +12,7 @@ using namespace std;
 class Course_Records_Managment {
 public:
     BSTNode *root = NULL;
-    void addCourse(Course x) {
+    void addCourse(Course *x) {
         
         cout << "Inseted at " << insertNode(root,x) << endl;
         cout << "-------------------------------------------------------------" << endl;
@@ -29,7 +29,7 @@ public:
         if (root == NULL){
             return;
         }
-        cout << counter << '.' << root->Content.Get_Name() << endl;
+        cout << counter << '.' << root->Content->Get_Name() << endl;
         counter++;
         Displaypreorder(root->left,counter);
         Displaypreorder(root->right,counter);
@@ -47,7 +47,7 @@ public:
 
         counter++; 
         if (counter == key) {
-            return root->Content;
+            return *root->Content;
         }
 
         // Traverse the left subtree
@@ -65,12 +65,12 @@ public:
         Course emptyCourse("EMPTY", "NULL", 0);
         return emptyCourse;
     }
-    BSTNode* insertNode(BSTNode *&root, Course val){
+    BSTNode* insertNode(BSTNode *&root, Course *val){
         if (root == NULL){
             root = new BSTNode(val);
             return root;
         }
-        if (val.Get_ID() > root->Content.Get_ID()){
+        if (val->Get_ID() > root->Content->Get_ID()){
             root->right = insertNode(root->right,val);
         }
         else {
@@ -92,20 +92,20 @@ public:
     }
     Course minValue(BSTNode *root){
         if (root->left == NULL)
-            return root->Content;
+            return *root->Content;
         return minValue(root->left);
     }
     BSTNode* remove(BSTNode* root, int x){
         if (root == NULL){
             return root;
         }
-        if (root->Content.Get_ID() > x){
+        if (root->Content->Get_ID() > x){
             root->left = remove(root->left,x);
         }
-        if (root->Content.Get_ID() < x){
+        if (root->Content->Get_ID() < x){
             root->right = remove(root->right,x);
         } 
-        if (root->Content.Get_ID() == x){
+        if (root->Content->Get_ID() == x){
             if (root->left == NULL && root->right == NULL){
                 return NULL;
             }
@@ -117,7 +117,7 @@ public:
             }
             Course n = minValue(root);
             root->right = remove(root->right,n.Get_ID());
-            root->Content = n;
+            root->Content = &n;
         }
         return root;
     }
@@ -127,15 +127,15 @@ public:
             cout << "Object Doesn't Exist" << endl;
             return false;
         }
-        if (root->Content.Get_ID() == x){
+        if (root->Content->Get_ID() == x){
             cout << "Object Found" << endl;
             cout << "Deleting..." << endl;
             return true;
         }
-        if (root->Content.Get_ID() > x){
+        if (root->Content->Get_ID() > x){
             return search(root->left,x);
         }
-        if (root->Content.Get_ID() < x){
+        if (root->Content->Get_ID() < x){
             return search(root->right,x);
         }
         return false;

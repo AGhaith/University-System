@@ -44,8 +44,8 @@ public:
             cout << temp.Pop().Get_Name() << endl;
         }
     }
-    void Add_To_Prerequisites( Course must_be_finished_course){
-        Prerequisites.Push(must_be_finished_course);
+    void Add_To_Prerequisites( Course *must_be_finished_course){
+        Prerequisites.PushWithAddress(must_be_finished_course);
     }
     //Useless Function that sends a copy of the prerequisite stack to prevent editing in the origical stack
     Stack<Course> Get_Copy_Of_Prerequisite_Stack(){

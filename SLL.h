@@ -11,10 +11,14 @@ class SLLNode{
 
 public:
     T Data;
+    T* Dataaddress;
     SLLNode* next = NULL;
 
     SLLNode(T Data){
         this->Data = Data ; 
+    }
+    SLLNode(T* Data){
+        this->Dataaddress = Data ; 
     }
 
 };
@@ -73,6 +77,24 @@ class SLL{
         }
 
     }
+        void insert_with_pointer(T *mydata){
+
+        SLLNode<T>* newnode = new SLLNode<T>(mydata) ; 
+
+        if (head==NULL){
+
+            head = newnode ; 
+        }
+        else{
+
+            SLLNode<T>* temp = head ; 
+            while (temp->next != NULL){
+                temp = temp->next ;
+            }
+            temp->next = newnode ; 
+        }
+
+    }
     void Display_Courses(){
         int counter = 1;
         if (head == NULL) {
@@ -113,7 +135,7 @@ class SLL{
     
 
         while(curr!=NULL){
-        string compare = lower(curr->Data.Get_Email());
+        string compare = lower(curr->Dataaddress->Get_Email());
             if (compare == email){
                 break;
             }
@@ -123,8 +145,8 @@ class SLL{
             cout << "Couldn't Find Email" << endl;
             return false;
         }else {
-            if(curr->Data.Get_Password() == password){
-            x=&(curr->Data);
+            if(curr->Dataaddress->Get_Password() == password){
+            x=(curr->Dataaddress);
             return true;
             }
             return false;

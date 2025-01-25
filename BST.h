@@ -11,8 +11,8 @@ class BSTNode {
 public:
     BSTNode* right = NULL;
     BSTNode* left = NULL;
-    Course Content;
-    BSTNode(Course Content) {
+    Course *Content;
+    BSTNode(Course *Content) {
         this->Content = Content;
     }
 

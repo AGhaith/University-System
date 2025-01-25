@@ -118,7 +118,7 @@ void studentregisterpage(){
         cin >> password;
     }
     Student newstudent(fname,lname,phone,address,password);
-    (*MyUniversity).Add_To_Student_Record(newstudent);
+    (*MyUniversity).Add_To_Student_Record(&newstudent);
     clear();
     printBlue("\n--- NILE UNIVERSITY MANAGEMENT SYSTEM ---\n");
     cout << "Student Added Successfully" << endl;
