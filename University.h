@@ -23,6 +23,7 @@ public:
         return NumberOfCourses;
     }
     void display_Student_Records(){
+        StudentRecords.selection_sorting();
         StudentRecords.display();
     }
     void Add_To_Student_Record(Student *a){

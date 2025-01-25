@@ -27,6 +27,9 @@ class Student_Records_Management{
     bool check(string email,string password,Student *&x){
         return SLL_Students.checkuserinfo(email,password,x);
     }
+    void selection_sorting(){
+        SLL_Students.selection_sort();
+    }
 };
 
 
