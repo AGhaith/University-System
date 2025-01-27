@@ -65,11 +65,17 @@ Student s1("Ahmed","Ghaith","01021565688","8th District","Password@1");
 Student s2("Omar","Sholkamy","01021565688","8th District","Password@2");
 Student s3("Yousef","Amir","01021565688","8th District","Password@3");
 
+// lw hancheck selection sort 3la arkam so8yra :)
+// s1.set_ID(3);
+// s2.set_ID(4);
+// s3.set_ID(1);
+
 // Adding them to the record
 
 nileuniversity.Add_To_Student_Record(&s1);
 nileuniversity.Add_To_Student_Record(&s2);
 nileuniversity.Add_To_Student_Record(&s3);
+
 c2.Add_To_Prerequisites(&c1);
 c3.Add_To_Prerequisites(&c2);
 

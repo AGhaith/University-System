@@ -51,7 +51,7 @@ class DLL{
         }
         cout << "Enrollment history" ; 
         while ( curr != NULL){
-            cout << curr->data->Get_Name()<< "   " << " || " ; 
+            cout << "      "<<curr->data->Get_Name()<< "   " << " || " ; 
             curr = curr->next ;
         }
         cout << endl ; 

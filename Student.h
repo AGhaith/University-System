@@ -42,6 +42,9 @@ class Student:public Person{
     int Get_Number_Of_Enrolled_Courses(){
         return NumberOfEnrolledCourses;
     }
+    void set_ID(int id){
+        Student_id = id ; 
+    }
     Course *FindCourseByNumber(int Course_To_Find){
         return RegisteredCourses.FindCourseByNumber(Course_To_Find);
     }
@@ -153,7 +156,7 @@ class Student:public Person{
     bool operator==(Student other) const {
         return this->Student_id == other.Student_id ;
     }
-    bool operator<(Student *other) const {
-        return this->Student_id < other->Student_id ;
-    }
+    bool operator<(Student &other) const {
+        return this->Student_id <= other.Student_id ;
+    }  
 };

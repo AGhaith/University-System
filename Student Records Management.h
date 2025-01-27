@@ -12,7 +12,8 @@ class Student_Records_Management{
     SLL<Student> SLL_Students ; 
     public:
     void Add_student(Student *mystudent){
-        SLL_Students.insert_with_pointer(mystudent) ; 
+        SLL_Students.insert_with_pointer(mystudent) ;
+        selection_sorting();
     }
     void Add_Course(Student mystudent , Course x){
         mystudent.Add_To_Finshed_courses(x);

@@ -135,7 +135,7 @@ class SLL{
 
             while (curr != NULL){
                 cout << "--------------------------------------------------------------------------------------------" << endl;
-                cout << curr->Dataaddress->Get_ID() << "  ||  " << curr->Dataaddress->Get_First_Name() << " " << curr->Dataaddress->Get_Last_Name() << "  ||  " << curr->Dataaddress->Get_Email() << "  ||  " << curr->Dataaddress->Get_Phone() << "  ||  " << curr->Dataaddress->Get_Address() <<  "  ||  " << curr->Dataaddress->Get_Password() << endl ;
+                cout << curr->Dataaddress->Get_ID() << "  ||  " << curr->Dataaddress->Get_First_Name() << " " << curr->Dataaddress->Get_Last_Name() << "  ||  " << curr->Dataaddress->Get_Email() << "  ||  " << curr->Dataaddress->Get_Phone() << "  ||  " << curr->Dataaddress->Get_Address() <<  "  ||  " << curr->Dataaddress->Get_Password() <<  "  ||  "<< curr->Dataaddress->Get_ID() << endl ;
                 curr=curr->next;
             }
             cout << "--------------------------------------------------------------------------------------------" << endl;
@@ -233,15 +233,16 @@ class SLL{
     
     void swap(SLLNode<T>* curr, SLLNode<T>* innercurr){
         T *temp = curr->Dataaddress;
-        curr->Dataaddress = innercurr->Dataaddress;
+        (curr->Dataaddress) = (innercurr->Dataaddress);
         innercurr->Dataaddress = temp;
     }
 
     void selection_sort(){
+        SLLNode<T>* minnode = head ;
         for (SLLNode<T>* curr = head ; curr!= NULL  ; curr = curr->next){
             SLLNode<T>* minnode = curr ; 
-            for (SLLNode<T>* innercurr = curr->next  ;  innercurr!= NULL ; innercurr = innercurr->next){
-                if (innercurr->Dataaddress < minnode->Dataaddress ){
+            for (SLLNode<T>* innercurr = curr  ;  innercurr!= NULL ; innercurr = innercurr->next){
+                if (*(innercurr->Dataaddress) < *( minnode->Dataaddress) ){
                     minnode = innercurr;
                 }
             }
