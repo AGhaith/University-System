@@ -103,11 +103,12 @@ class Student:public Person{
     bool WithdrawCourse(Course* Course_To_Withdraw){
         bool temp = this->RegisteredCourses.Delete_Course(Course_To_Withdraw);
         if (temp){
+        bool temp2 = this->remove_from_hash(Course_To_Withdraw);
+        if (temp&&temp2){
             NumberOfEnrolledCourses--;
             return temp;
         }
-        else return temp;
-        
+        }
     }
     void Display_Enrolled_Courses(){
         RegisteredCourses.Display_Courses();
@@ -131,6 +132,10 @@ class Student:public Person{
 
         FinishedCoursesHashmap[hashing(mycourse)].insert_with_pointer(mycourse);
 
+    }
+    bool remove_from_hash(Course *mycourse){
+        int index = hashing(mycourse);
+        return FinishedCoursesHashmap[index].Delete_Course_from_hash(mycourse);
     }
     // Look up courses with hashtable
     bool searchWithHashing(Course *x){

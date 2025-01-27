@@ -207,6 +207,29 @@ class SLL{
         cout << "There are no students" << endl;
         return;
     }
+    bool Delete_Course_from_hash(Course* x){
+
+        if (head == NULL) {
+            return false;
+        }
+        SLLNode<Course> *curr = head;
+        SLLNode<Course> *temp ;
+        
+        if (*curr->Dataaddress == *x){
+            head=curr->next;
+            delete curr;
+            return true;
+        }
+        while(curr->next != NULL && !(*curr->next->Dataaddress == *x)){
+            curr = curr->next;
+        }
+        if (curr->next == NULL){return false;}else {
+            temp = curr->next;
+            curr->next = temp->next;
+            delete temp;
+            return true;
+        }
+    }
     SLLNode<T> *curr = head;
     if (curr->Data.Get_ID() == id){
         head=curr->next;
