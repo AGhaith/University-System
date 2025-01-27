@@ -43,10 +43,10 @@ class SLL{
         }
 
     }
-    bool Findinaddress(T x){
+    bool Findinaddress(T *x){
         SLLNode<T>*curr = head;
         while(curr!=NULL){
-            if (*(curr->Dataaddress) == x){
+            if (*(curr->Dataaddress) == *x){
                 break;
             }
             curr = curr->next;
@@ -180,21 +180,25 @@ class SLL{
         if (*curr->Dataaddress == *x){
             head=curr->next;
             delete curr;
-            Student*  studentturn = x->dequeue_from_waitlist();
             x->free_seat();
-            studentturn->RegisterCourse(x);
+            Student*  studentturn = x->dequeue_from_waitlist();
+            if (studentturn != NULL){
+                studentturn->RegisterCourse(x);
+            }
             return true;
         }
         while(curr->next != NULL && !(*curr->next->Dataaddress == *x)){
             curr = curr->next;
         }
-        if (curr == NULL){return false;}else {
+        if (curr->next == NULL){return false;}else {
             temp = curr->next;
             curr->next = temp->next;
             delete temp;
+             x->free_seat();
             Student*  studentturn = x->dequeue_from_waitlist();
-            x->free_seat();
-            studentturn->RegisterCourse(x);
+            if (studentturn != NULL){
+                studentturn->RegisterCourse(x);
+            }
             return true;
         }
     }

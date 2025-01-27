@@ -5,6 +5,7 @@
 #include "Course.h"
 #include "Person.h"
 #include "SLL.h"
+#include "DLL.h"
 using namespace std ;
 class Course;
 
@@ -51,7 +52,7 @@ class Student:public Person{
 
     bool RegisterCourse(Course *Course_To_Register){
         // check in hash
-        if ( RegisteredCourses.Findinaddress(*Course_To_Register)) 
+        if ( RegisteredCourses.Findinaddress(Course_To_Register)) 
         {
             printRed("You Are Already Registered");
             return false ;
@@ -74,6 +75,7 @@ class Student:public Person{
         NumberOfEnrolledCourses++;
         Course_Enrollment_History.add(Course_To_Register);
         Course_To_Register->take_seat();
+        this->Add_To_Finshed_courses(Course_To_Register);
         cout <<"student succefully enrolled " << endl ;
         return true ;
     }
@@ -93,7 +95,7 @@ class Student:public Person{
                     cout << "Prerequiste Found !!!" << endl;
                     //cout << "Prerequisite : " << curr_course->Get_Name() << endl;
                     //Sleep(1000); 
-                    if (!((this)->searchWithHashing(*curr_course))) {
+                    if (!((this)->searchWithHashing(curr_course))) {
                         cout << "You Don't seem to have finished the required courses" << endl;  
                         return false; 
                     }
@@ -113,9 +115,9 @@ class Student:public Person{
     void Display_Enrolled_Courses(){
         RegisteredCourses.Display_Courses();
     }
-    int hashing(Course mycourse){
+    int hashing(Course *mycourse){
         int final = 0;
-        string a = mycourse.Get_Name();
+        string a = mycourse->Get_Name();
         for(int i = 0 ; i < a.length() ; i++){
             int temp = a[i];
             if (i-1==a.length()){
@@ -127,15 +129,17 @@ class Student:public Person{
         return final;
 
     }
-    void Add_To_Finshed_courses(Course mycourse){
+    void Add_To_Finshed_courses(Course *mycourse){
 
-        FinishedCoursesHashmap[hashing(mycourse)].insert(mycourse);
+        FinishedCoursesHashmap[hashing(mycourse)].insert_with_pointer(mycourse);
 
     }
     // Look up courses with hashtable
-    bool searchWithHashing(Course x){
+    bool searchWithHashing(Course *x){
+        cout << "Check 1 " << endl
         int index = hashing(x);
-        return FinishedCoursesHashmap[index].Find(x);
+        cout << "Check 2 " << endl;
+        return FinishedCoursesHashmap[index].Findinaddress(x);
     }
     /*void display_enrolled_courses(){
 

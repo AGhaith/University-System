@@ -15,10 +15,6 @@ class Student_Records_Management{
         SLL_Students.insert_with_pointer(mystudent) ;
         selection_sorting();
     }
-    void Add_Course(Student mystudent , Course x){
-        mystudent.Add_To_Finshed_courses(x);
-        cout << "Course " << x.Get_Name() << " Successfully Added to " << mystudent.Get_First_Name() << " " << mystudent.Get_Last_Name() << "'s " << "Transcript" << endl;
-    }
     void Delete_Student(int ID){
         SLL_Students.deleteStudent(ID) ; 
     }

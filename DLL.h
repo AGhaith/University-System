@@ -34,7 +34,7 @@ class DLL{
         DLLNode<T> *newnode = new DLLNode<T>( data )  ;
 
         if (head == 0 ){
-            head = newnode ;
+            head = tail = newnode ;
         }
         else{
             newnode->prev = tail ;
