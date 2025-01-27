@@ -89,12 +89,9 @@ class Student:public Person{
         }
         int counter = 1;
         while (!Prerequisites.is_empty()) {
-                cout << "Checking prerequisite Number "  << counter++ << endl;
                 Course *curr_course = Prerequisites.Pop(); 
                 if(curr_course != NULL){
                     cout << "Prerequiste Found !!!" << endl;
-                    //cout << "Prerequisite : " << curr_course->Get_Name() << endl;
-                    //Sleep(1000); 
                     if (!((this)->searchWithHashing(curr_course))) {
                         cout << "You Don't seem to have finished the required courses" << endl;  
                         return false; 
@@ -118,9 +115,10 @@ class Student:public Person{
     int hashing(Course *mycourse){
         int final = 0;
         string a = mycourse->Get_Name();
-        for(int i = 0 ; i < a.length() ; i++){
+        int name_length = a.length(); 
+        for(int i = 0 ; i < name_length; i++){
             int temp = a[i];
-            if (i-1==a.length()){
+            if (i+1==name_length){
                 final = final + temp*2;
             }else {
                 final+=temp;
@@ -136,9 +134,7 @@ class Student:public Person{
     }
     // Look up courses with hashtable
     bool searchWithHashing(Course *x){
-        cout << "Check 1 " << endl
         int index = hashing(x);
-        cout << "Check 2 " << endl;
         return FinishedCoursesHashmap[index].Findinaddress(x);
     }
     /*void display_enrolled_courses(){
